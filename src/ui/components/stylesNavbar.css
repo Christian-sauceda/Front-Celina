@@ -1,0 +1,50 @@
+
+.navbar-fondo {
+    background: #02626e;
+    border-bottom: 3px solid #1ba7b9;
+}
+
+.cerrar_sesion:hover {
+    background: rgb(3, 119, 134);
+    transition: ease-in 0.3s;
+}
+
+.card-styles{
+    border: 1px solid #036875;
+}
+
+.card-styles:hover{
+    /* display: inline-block; */
+    margin-top: -0.5rem;
+    transition: ease-in-out 0.1s;
+}
+
+.title-empresa{
+    font-size: 2rem;
+}
+
+/* 
+@media(max-width: 767px){
+    .title-empresa{
+        font-size: 1rem;
+
+    }
+}
+
+@media(max-width: 388px){
+    .btn-ingresar{
+        font-size: 0.8em;
+        padding: 0;
+    }
+
+    .title-empresa{
+        font-size: 0.8rem;
+
+    }
+} */
+
+
+
+
+
+/* qwe */
