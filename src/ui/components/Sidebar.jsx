@@ -5,27 +5,93 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import BuildIcon from '@mui/icons-material/Build';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import MenuIcon from '@mui/icons-material/Menu';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import './stylesSidebar.css'
 
-export const Sidebar = () => {
+import imagenPerfil from '../../assets/fantasma.jpg'
+
+export const Sidebar = ( {children} ) => {
   return (
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <div className="col-auto px-0">
+            <div className="col-auto px-0 sidebar_nav_styles">
                 <div id="sidebar" className="collapse collapse-horizontal show border-end">
-                    <div id="sidebar-nav" className="list-group border-0 rounded-0 text-sm-start min-vh-100">
+
+                    <div id="sidebar-nav" className="list-group border-0 rounded-0 text-sm-start min-vh-100 sidebar_nav_styles">
+                        
+                        <h3 className='text-center my-2'>APPTECK</h3>
+
+                        {/* Perfil Usuario */}
+                        <div className="card card_styles">
+                            <div className='d-flex justify-content-center mt-3'>
+                                <img src={imagenPerfil} className="card-img-top rounded-circle img_profile " alt="Profile" />
+                            </div>
+                            <div className="card-body">
+                                <div className='d-flex flex-column align-items-center'>
+                                    <span className='profile_username_styles'>Lucas</span>
+                                    <span className='role_title_styles'>Super Administrador</span>
+                                </div>
+
+                                <div className='d-flex justify-content-between my-2'>
+                                    <a href='#'><PersonIcon /></a>
+                                    <a href='#'><SettingsIcon /></a>
+                                    <a href='#'><LogoutIcon /></a>
+                                </div>
+                            </div>
+                        </div>
                         <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HomeIcon fontSize='small' /> <span>Inicio</span> </a>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><StorageIcon fontSize='small' /> <span>Adminitracion</span></a>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><CalculateIcon fontSize='small' /> <span>Contabilidad</span></a>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><SummarizeIcon fontSize='small' /> <span>Reportes</span></a>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><BuildIcon fontSize='small' /> <span>Utilidades</span></a>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
+
+                        {/* Adminitracion Collapse */}
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-between" data-bs-parent="#sidebar" data-bs-toggle="collapse" data-bs-target="#collapseAdminitracion" aria-expanded="false" aria-controls="collapseAdminitracion">
+                            <StorageIcon fontSize='small' /> <span>Adminitracion</span><ArrowDropDownIcon fontSize='small'  />
+                        </a>
+                        <div className="collapse collapse_styles" id="collapseAdminitracion">
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Usuarios</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Empresas</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Tipos de Asientos</span> </a>
+                        </div>
+
+
+                        {/* Contabilidad Collapse */}
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-between" data-bs-parent="#sidebar" data-bs-toggle="collapse" data-bs-target="#collapseContabilidad" aria-expanded="false" aria-controls="collapseContabilidad">
+                            <CalculateIcon fontSize='small' /> <span>Contabilidad</span><ArrowDropDownIcon fontSize='small'  />
+                        </a>
+                        <div className="collapse collapse_styles" id="collapseContabilidad">
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Catalogo de Cuentas</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Generar Asientos</span> </a>
+                        </div>
+
+                        {/* Reportes Collapse */}
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-between" data-bs-parent="#sidebar" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
+                            <SummarizeIcon fontSize='small' /> <span>Reportes</span><ArrowDropDownIcon fontSize='small'  />
+                        </a>
+                        <div className="collapse collapse_styles" id="collapseReportes">
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Balance General</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Balanza de Comprobacion</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Estado de Resultado</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Diario</span> </a>
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Mayor</span> </a>
+                        </div>
+
+                        {/* Utilidades Collapse */}
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-between" data-bs-parent="#sidebar" data-bs-toggle="collapse" data-bs-target="#collapseUtilidades" aria-expanded="false" aria-controls="collapseUtilidades">
+                            <BuildIcon fontSize='small' /> <span>Utilidades</span><ArrowDropDownIcon fontSize='small'  />
+                        </a>
+                        <div className="collapse collapse_styles" id="collapseUtilidades">
+                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Consulta Bitacora</span> </a>
+                        </div>
+
+
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate salir_sistema_styles mt-5" data-bs-parent="#sidebar"><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
                     </div>
                 </div>
             </div>
-            <main className="col ps-md-2 pt-2">
-                {/* <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" className="border rounded-3 p-1 text-decoration-none"><MenuIcon fontSize='medium' /> Menu</a> */}
+            <main className="col ps-md-2 pt-2 ">
 
                 <MenuIcon 
                     fontSize='large' 
@@ -37,7 +103,9 @@ export const Sidebar = () => {
                     }} 
                 />
 
-                <div className="page-header pt-3">
+                {children}
+
+                {/* <div className="page-header pt-3">
                     <h2>Bootstrap 5 Sidebar Menu - Simple</h2>
                 </div>
                 <p className="lead">A offcanvas "push" vertical nav menu example.</p>
@@ -47,7 +115,10 @@ export const Sidebar = () => {
                         <p>This is a simple collapsing sidebar menu for Bootstrap 5. Unlike the Offcanvas component that overlays the content, this sidebar will "push" the content. Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics, raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
                         <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
                     </div>
-                </div>
+                </div> */}
+
+
+
             </main>
         </div>
     </div>
