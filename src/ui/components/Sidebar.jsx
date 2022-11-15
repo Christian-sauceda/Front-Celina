@@ -86,7 +86,6 @@ export const Sidebar = ( {children} ) => {
                             <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Consulta Bitacora</span> </a>
                         </div>
 
-
                         <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate salir_sistema_styles mt-5" data-bs-parent="#sidebar"><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
                     </div>
                 </div>

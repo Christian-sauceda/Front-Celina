@@ -26,7 +26,7 @@ export const CelinaRoutes = () => {
         <Route path="/utilidades/*" element={<UtilidadesRoutes />} />
 
         {/* "404" */}
-        <Route path="/*" element={<Navigate to='/inicio' />} />
+        <Route path="/*" element={<Navigate to='/empresas-init' />} />
     </Routes>
   )
 }
