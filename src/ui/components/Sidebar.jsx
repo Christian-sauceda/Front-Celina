@@ -14,6 +14,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './stylesSidebar.css'
 
 import imagenPerfil from '../../assets/fantasma.jpg'
+import { NavLink } from 'react-router-dom';
 
 export const Sidebar = ( {children} ) => {
   return (
@@ -44,16 +45,33 @@ export const Sidebar = ( {children} ) => {
                                 </div>
                             </div>
                         </div>
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HomeIcon fontSize='small' /> <span>Inicio</span> </a>
+                        {/* Inicio */}
+                        <NavLink to='/inicio' className="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar"><HomeIcon fontSize='small' />
+                            <span>Inicio</span>
+                        </NavLink>
 
                         {/* Adminitracion Collapse */}
                         <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate d-flex justify-content-between" data-bs-parent="#sidebar" data-bs-toggle="collapse" data-bs-target="#collapseAdminitracion" aria-expanded="false" aria-controls="collapseAdminitracion">
                             <StorageIcon fontSize='small' /> <span>Adminitracion</span><ArrowDropDownIcon fontSize='small'  />
                         </a>
                         <div className="collapse collapse_styles" id="collapseAdminitracion">
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Usuarios</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Empresas</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Tipos de Asientos</span> </a>
+
+                            <NavLink to='/administracion/usuarios' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' /> 
+                                <span>Usuarios</span> 
+                            </NavLink>
+
+
+                            <NavLink to='/administracion/empresas' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' />
+                                <span>Empresas</span>
+                            </NavLink>
+
+
+                            <NavLink to='/administracion/tipo-asientos' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' />
+                            <span>Tipos de Asientos</span>
+                            </NavLink>
                         </div>
 
 
@@ -62,8 +80,15 @@ export const Sidebar = ( {children} ) => {
                             <CalculateIcon fontSize='small' /> <span>Contabilidad</span><ArrowDropDownIcon fontSize='small'  />
                         </a>
                         <div className="collapse collapse_styles" id="collapseContabilidad">
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Catalogo de Cuentas</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Generar Asientos</span> </a>
+                            <NavLink to='/contabilidad/catalogo-cuentas' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' />
+                                <span>Catalogo de Cuentas</span>
+                            </NavLink>
+
+                            <NavLink to='/contabilidad/generacion-asientos' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' />
+                                <span>Generar Asientos</span>
+                            </NavLink>
                         </div>
 
                         {/* Reportes Collapse */}
@@ -71,11 +96,15 @@ export const Sidebar = ( {children} ) => {
                             <SummarizeIcon fontSize='small' /> <span>Reportes</span><ArrowDropDownIcon fontSize='small'  />
                         </a>
                         <div className="collapse collapse_styles" id="collapseReportes">
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Balance General</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Balanza de Comprobacion</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Estado de Resultado</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Diario</span> </a>
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Mayor</span> </a>
+                            <NavLink to='/reportes/balancegeneral' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar">
+                                <KeyboardArrowRightIcon fontSize='small' />
+                                <span>Balance General</span>
+                            </NavLink>
+                            
+                            <NavLink to='/reportes/balanzacomprobacion'className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Balanza de Comprobacion</span> </NavLink>
+                            <NavLink to='/reportes/estadoresultado'className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Estado de Resultado</span> </NavLink>
+                            <NavLink to='/reportes/librodiario'className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Diario</span> </NavLink>
+                            <NavLink to='/reportes/libromayor'className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Libro Mayor</span> </NavLink>
                         </div>
 
                         {/* Utilidades Collapse */}
@@ -83,7 +112,7 @@ export const Sidebar = ( {children} ) => {
                             <BuildIcon fontSize='small' /> <span>Utilidades</span><ArrowDropDownIcon fontSize='small'  />
                         </a>
                         <div className="collapse collapse_styles" id="collapseUtilidades">
-                            <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Consulta Bitacora</span> </a>
+                            <NavLink to='/utilidades/bitacora' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Consulta Bitacora</span> </NavLink>
                         </div>
 
                         <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate salir_sistema_styles mt-5" data-bs-parent="#sidebar"><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
