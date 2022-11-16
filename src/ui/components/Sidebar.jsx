@@ -13,7 +13,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import './stylesSidebar.css'
 
-import imagenPerfil from '../../assets/fantasma.jpg'
+import imagenPerfil from '../../assets/perfil.png'
 import { NavLink } from 'react-router-dom';
 
 export const Sidebar = ( {children} ) => {
