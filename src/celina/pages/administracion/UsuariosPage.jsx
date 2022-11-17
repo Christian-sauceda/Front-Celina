@@ -10,7 +10,7 @@ export const UsuariosPage = () => {
   const columns = ["ID de Usuario", "Primer Nombre", "Segundo Nombre", "Apellidos", "Email", "Sexo", "Estado Civil", "Edad", "Telefono Movil"];
 
   const options = {
-    filterType: 'checkbox',
+    filterType: 'dropdown',
     responsive: 'simple'
   };
 

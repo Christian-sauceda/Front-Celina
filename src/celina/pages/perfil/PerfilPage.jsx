@@ -1,5 +1,10 @@
-import { Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Box, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 
+// DatePicker
+import DatePicker, {registerLocale} from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from 'date-fns/locale/es';
+registerLocale('es', es)
 
 export const PerfilPage = () => {
   return (
@@ -7,7 +12,7 @@ export const PerfilPage = () => {
     <div className="container mt-5">
       <h2>Datos del Usuario: Lucas</h2>
       <hr />
-      <form>
+      <Box component="form">
         <Grid container>
           <Grid item xs={12} sx={{mt: 2}}>
               <TextField
@@ -74,12 +79,75 @@ export const PerfilPage = () => {
           </Grid>
 
           <Grid item xs={12} sx={{mt: 2}}>
+            <InputLabel>Fecha de Nacimiento</InputLabel>
+            <DatePicker 
+              // minDate={formValue.start} // Para que NO me seleccione una fecha MENOR a la fecha de INICIO
+              // selected={formValue.end}
+              onChange={(event) => onDateChange(event, 'end')}
+              className="form-control"
+              dateFormat='Pp'
+              locale='es'
+            />
+          </Grid>
+         
+          <Grid item xs={12} sx={{mt: 2}}>
+            <InputLabel>Tipo de Usuario</InputLabel>
+            <Select
+              id="demo-simple-select"
+              placeholder='Ejemplo: Saravia Delarca' 
+              defaultValue={2}
+              // onChange={handleChange}
+              fullWidth
+            >
+              <MenuItem value={1}>ADMINISTRADOR</MenuItem>
+              <MenuItem value={2}>USUARIO</MenuItem>
+            </Select>
+          </Grid>
 
+          <Grid item xs={12} sx={{mt: 2}}>
+            <InputLabel>Estado</InputLabel>
+            <Select
+              id="demo-simple-select"
+              placeholder='Ejemplo: Saravia Delarca' 
+              defaultValue={1}
+              // onChange={handleChange}
+              fullWidth
+            >
+              <MenuItem value={1}>Prueba</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+              <MenuItem value={2}>Atlantida</MenuItem>
+            </Select>
+          </Grid> 
 
+          <Grid item xs={12} sx={{mt: 2}}>
+            {/* <InputLabel>Direccion</InputLabel> */}
+              <TextField
+                label='Direccion' 
+                type='textarea' 
+                placeholder='Ejemplo: Col. Celina, Tegucigalpa, Francisco Morazan' 
+                fullWidth
+                name='direccion'
+                // onChange={}
+                // error={}              
+                // helperText={}
+              />
+
+            {/* <TextareaAutosize
+              aria-label="empty textarea"
+              placeholder="Ingrese su direccion"
+              style={{ width: 500 }}
+            /> */}
           </Grid>
 
         </Grid>
-      </form>
+      </Box>
     </div>
     </>
   )

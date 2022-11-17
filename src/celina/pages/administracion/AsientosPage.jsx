@@ -34,6 +34,7 @@ export const AsientosPage = () => {
   ]
 
   const options = {
+    filterType: 'dropdown',
     responsive: 'simple'
   };
 

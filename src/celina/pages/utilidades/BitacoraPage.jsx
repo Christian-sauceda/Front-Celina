@@ -7,7 +7,7 @@ export const BitacoraPage = () => {
   const columns = ["Operación", "Detalle", "Pantalla", "Tablas", "IP", "HostName", "Fecha Registro"]
 
   const options = {
-    filterType: 'checkbox',
+    filterType: 'dropdown',
     responsive: 'simple'
   };
 

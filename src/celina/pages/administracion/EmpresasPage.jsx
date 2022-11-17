@@ -43,7 +43,7 @@ export const EmpresasPage = () => {
     }},
   ]
   const options = {
-    filterType: 'checkbox',
+    filterType: 'dropdown',
     responsive: 'simple',
   };
 
