@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 //? DATA MOMENTANEA (LUEGO LA BORRARE)
-import {data} from '../../../assets/dataExample'
+import {dataUsuarios} from '../../../assets/dataUsuarios'
 
 export const UsuariosPage = () => {
   const columns = ["ID de Usuario", "Primer Nombre", "Segundo Nombre", "Apellidos", "Email", "Sexo", "Estado Civil", "Edad", "Telefono Movil"];
@@ -31,7 +31,7 @@ export const UsuariosPage = () => {
 
         <MUIDataTable
           title={"Usuarios"}
-          data={data}
+          data={dataUsuarios}
           columns={columns}
           options={options} 
         />
@@ -39,3 +39,5 @@ export const UsuariosPage = () => {
     </>
   )
 }
+
+
