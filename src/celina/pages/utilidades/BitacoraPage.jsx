@@ -15,6 +15,7 @@ export const BitacoraPage = () => {
     <>
       <div className="container-fluid mt-5">
         <MUIDataTable
+          className='animate__animated animate__fadeIn'
           title={"Consulta Bitácora"}
           data={dataBitacora}
           columns={columns}

@@ -54,6 +54,7 @@ export const AsientosPage = () => {
         </div>
 
         <MUIDataTable
+          className='animate__animated animate__fadeIn'
           title={"Tipos de Asientos"}
           data={dataTipoAsientos}
           columns={columns}

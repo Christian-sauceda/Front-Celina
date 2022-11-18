@@ -30,6 +30,7 @@ export const UsuariosPage = () => {
         </div>
 
         <MUIDataTable
+          className='animate__animated animate__fadeIn'
           title={"Usuarios"}
           data={dataUsuarios}
           columns={columns}

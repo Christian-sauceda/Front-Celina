@@ -40,8 +40,8 @@ export const Sidebar = ( {children} ) => {
 
                                 <div className='d-flex justify-content-between my-2'>
                                     <NavLink to='/profile'><PersonIcon /></NavLink>
-                                    <a href='#'><SettingsIcon /></a>
-                                    <a href='#'><LogoutIcon /></a>
+                                    <NavLink href='#'><SettingsIcon /></NavLink>
+                                    <NavLink to='/empresas-init'><LogoutIcon /></NavLink>
                                 </div>
                             </div>
                         </div>
