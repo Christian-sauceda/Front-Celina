@@ -97,6 +97,7 @@ export const PerfilPage = () => {
               className="form-control"
               dateFormat='Pp'
               locale='es'
+              // selected={new Date().getDate()}
             />
           </Grid>
          
