@@ -8,9 +8,14 @@ import EditIcon from '@mui/icons-material/Edit';
 
 //? DATA MOMENTANEA (LUEGO LA BORRARE)
 import {dataUsuarios} from '../../../assets/dataUsuarios'
+import { UsuariosModal } from "./";
+
+// Custom Hooks
+import { useUiStoreUsuarios } from "../../../hooks";
 
 export const UsuariosPage = () => {
   // const columns = ["ID de Usuario", "Primer Nombre", "Segundo Nombre", "Apellidos", "Email", "Sexo", "Estado Civil", "Edad", "Telefono Movil", "Tipo Usuario", "Pais", "Estado", "Ciudad", "Accion"];
+  const {openUsuariosModal} = useUiStoreUsuarios() // Hook para Abrir Modal de Usuarios
 
   const columns = [
     {name: 'ID de Usuario'},
@@ -28,15 +33,15 @@ export const UsuariosPage = () => {
     {name: 'Ciudad'},
     {name: 'Accion', options: {
       customBodyRender: (value, tableMeta, updateValue) => {
-        return (<>
-          <Button className="mb-2" fullWidth variant="outlined" startIcon={<EditIcon />}>
-            Editar
-          </Button>
-          <Button fullWidth variant="outlined" startIcon={<DeleteIcon />}>
-            Eliminar
-          </Button>
-        </>
-
+        return (
+          <>
+            <Button className="mb-2" onClick={openUsuariosModal} fullWidth variant="outlined" startIcon={<EditIcon />}>
+              Editar
+            </Button>
+            <Button fullWidth variant="outlined" startIcon={<DeleteIcon />}>
+              Eliminar
+            </Button>
+          </>
         )
       }
     }},
@@ -70,6 +75,8 @@ export const UsuariosPage = () => {
           options={options} 
         />
       </div>
+
+      <UsuariosModal />
     </>
   )
 }

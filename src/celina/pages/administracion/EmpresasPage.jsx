@@ -8,9 +8,14 @@ import EditIcon from '@mui/icons-material/Edit';
 
 //? DATA MOMENTANEA (LUEGO LA BORRARE)
 import { dataEmpresas } from "../../../assets/dataEmpresas";
+import { EmpresasModal } from "./";
+
+// Custom Hooks
+import { useUiStoreEmpresas } from "../../../hooks";
 
 export const EmpresasPage = () => {
   // const columns = ["Nombre", "RTN", "Sitio Web", "Email", "Telefono", "Celular", "Direccion", "Ciudad", "Estado", "Pais", "Editar", "Eliminar"];
+  const {openEmpresasModal} = useUiStoreEmpresas() // Hook para Abrir Modal de Empresas
 
   const columns = [
     {name: 'Nombre'},
@@ -23,21 +28,17 @@ export const EmpresasPage = () => {
     {name: 'Ciudad'},
     {name: 'Estado'},
     {name: 'Pais'},
-    {name: 'Editar', options: {
+    {name: 'Accion', options: {
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
-          <Button variant="outlined" startIcon={<EditIcon />}>
-            Editar
-          </Button>
-        )
-      }
-    }},
-    {name: 'Eliminar', options: {
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <Button variant="outlined" startIcon={<DeleteIcon />}>
-            Eliminar
-          </Button>
+          <>
+            <Button className="mb-2" onClick={openEmpresasModal} fullWidth variant="outlined" startIcon={<EditIcon />}>
+              Editar
+            </Button>
+            <Button variant="outlined" fullWidth startIcon={<DeleteIcon />}>
+              Eliminar
+            </Button>
+          </>
         )
       }
     }},
@@ -69,6 +70,8 @@ export const EmpresasPage = () => {
           options={options} 
         />
       </div>
+
+      <EmpresasModal />
     </>
   )
 }

@@ -1,5 +1,21 @@
-import { Box, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import { useState } from "react";
+import { useState } from 'react';
+
+import PersonIcon from '@mui/icons-material/Person';
+import { Button, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
+import { Box } from '@mui/system';
+
+// Import Modal
+import Modal from "react-modal"
+import './stylesModalUsuarios.css'
+
+// Custom Hooks
+import { useUiStoreUsuarios } from "../../../../hooks";
+
+// Input Phones
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
 
 // DatePicker
 import DatePicker, {registerLocale} from "react-datepicker";
@@ -7,23 +23,46 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
-// Input Phones
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/material.css'
 
-export const PerfilPage = () => {
+  //* Configuraciones del Modal
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)', 
+    },
+};
+Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de React
+
+
+
+export const UsuariosModal = () => {
+  const {isUsuariosModalOpen, closeUsuariosModal} = useUiStoreUsuarios()
   const [cellPhone, setCellPhone] = useState()
   const changePhone = (e) => {
-    // console.log('ACA >> ', e)
-    // console.log('prueba >>> ', cellPhone)
     setCellPhone(e)
   }
 
   return (
-    <>
-    <div className="container mt-1 animate__animated animate__fadeIn">
-      <h2>Datos del Usuario: Lucas</h2>
-      <hr />
+    <Modal
+        isOpen={isUsuariosModalOpen}
+        onRequestClose={closeUsuariosModal}
+        style={customStyles}
+        className="modal"
+        overlayClassName="modal-fondo"
+        closeTimeoutMS={200}
+    >
+
+      {/* Header */}
+      <div className='d-flex align-items-middle justify-content-center py-4'>
+        <PersonIcon fontSize='large' />
+        <h2>Datos del Usuario</h2>
+      </div>
+
+      {/* Formulario */}
       <Box component="form" className="d-sm-flex mb-4">
         <Grid container>
           <Grid item xs={12} sx={{mt: 2}}>
@@ -33,6 +72,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: 0801199017845' 
                 fullWidth
                 name='idpasaporte'
+                variant='standard'
               />
           </Grid>
 
@@ -43,6 +83,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: mypassword2022' 
                 fullWidth
                 name='password'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -56,6 +97,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: John Doe' 
                 fullWidth
                 name='firstName'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -69,6 +111,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: Saravia Delarca' 
                 fullWidth
                 name='firstName'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -81,6 +124,7 @@ export const PerfilPage = () => {
               id="demo-simple-select"
               defaultValue={'M'}
               // onChange={handleChange}
+              variant='standard'
               fullWidth
             >
               <MenuItem value='M'>Masculino</MenuItem>
@@ -106,6 +150,7 @@ export const PerfilPage = () => {
             <Select
               id="demo-simple-select"
               defaultValue={2}
+              variant='standard'
               // onChange={handleChange}
               fullWidth
             >
@@ -119,6 +164,7 @@ export const PerfilPage = () => {
             <Select
               id="demo-simple-select"
               defaultValue={1}
+              variant='standard'
               // onChange={handleChange}
               fullWidth
             >
@@ -164,6 +210,8 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: John' 
                 fullWidth
                 name='username'
+                variant='standard'
+
               />
           </Grid>
 
@@ -174,6 +222,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: mypassword2022' 
                 fullWidth
                 name='password'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -187,6 +236,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: John Doe' 
                 fullWidth
                 name='lastName'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -200,6 +250,7 @@ export const PerfilPage = () => {
                 placeholder='Ejemplo: Saravia Delarca' 
                 fullWidth
                 name='email'
+                variant='standard'
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -211,6 +262,7 @@ export const PerfilPage = () => {
             <Select
               id="demo-simple-select"
               defaultValue={'S'}
+              variant='standard'
               // onChange={handleChange}
               fullWidth
             >
@@ -238,6 +290,7 @@ export const PerfilPage = () => {
               id="demo-simple-select"
               defaultValue={'HN'}
               // onChange={handleChange}
+              variant='standard'
               fullWidth
               >
               <MenuItem value='HN'>Honduras</MenuItem>
@@ -250,6 +303,7 @@ export const PerfilPage = () => {
             <Select
               id="demo-simple-select"
               defaultValue={1}
+              variant='standard'
               // onChange={handleChange}
               fullWidth
             >
@@ -267,7 +321,17 @@ export const PerfilPage = () => {
 
         </Grid>
       </Box>
-    </div>
-    </>
+
+      <hr/>
+      <div className="d-flex flex-column flex-sm-row justify-content-sm-end">
+          <Button className="mb-2 mb-sm-0 me-sm-4" onClick={closeUsuariosModal} variant="contained" color='error' startIcon={<CloseIcon />}>
+            Cerrar
+          </Button>
+          <Button variant="contained" startIcon={<SaveIcon />}>
+            Guardar
+          </Button>
+      </div>
+    
+    </Modal>
   )
 }

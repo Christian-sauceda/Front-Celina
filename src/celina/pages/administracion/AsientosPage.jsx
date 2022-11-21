@@ -7,16 +7,20 @@ import EditIcon from '@mui/icons-material/Edit';
 
 //? DATA MOMENTANEA (LUEGO LA BORRARE)
 import {dataTipoAsientos} from '../../../assets/dataTipoAsientos'
+import { AsientosModal } from "./";
+import { useUiStoreAsientos } from "../../../hooks";
 
 export const AsientosPage = () => {
   // const columns = ["Nombre", "Descripcion", "Editar", "Eliminar"]
+  const {openAsientosModal} = useUiStoreAsientos()
+
   const columns = [
     {name: 'Nombre'},
     {name: 'Descripcion'},
     {name: 'Editar', options: {
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
-          <Button variant="outlined" startIcon={<EditIcon />}>
+          <Button variant="outlined" onClick={openAsientosModal} startIcon={<EditIcon />}>
             Editar
           </Button>
         )
@@ -61,6 +65,8 @@ export const AsientosPage = () => {
           options={options} 
         />
       </div>
+
+      <AsientosModal />
     </>
   )
 }
