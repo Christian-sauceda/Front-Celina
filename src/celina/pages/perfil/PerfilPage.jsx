@@ -1,5 +1,10 @@
-import { Box, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Box, Button, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { useState } from "react";
+import CloseIcon from '@mui/icons-material/Close';
+import SaveIcon from '@mui/icons-material/Save';
+
+import { Link, NavLink } from "react-router-dom";
+
 
 // DatePicker
 import DatePicker, {registerLocale} from "react-datepicker";
@@ -264,6 +269,22 @@ export const PerfilPage = () => {
               <MenuItem value={2}>Atlantida</MenuItem>
             </Select>
           </Grid>
+
+
+          <div className="d-flex flex-column flex-sm-row justify-content-sm-end w-100 mt-3">
+              {/* <Link to='/inicio'  className="btn btn-cerra-styles" color="error">
+                <CloseIcon />
+                Cerrar
+              </Link> */}
+
+              <Button className="mb-2 mb-sm-0 me-sm-4" variant="contained" color='error' startIcon={<CloseIcon />}>
+                Cerrar
+              </Button>
+
+              <Button variant="contained" startIcon={<SaveIcon />}>
+                Guardar
+              </Button>
+          </div>
 
         </Grid>
       </Box>

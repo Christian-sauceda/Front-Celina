@@ -12,6 +12,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
+import SaveIcon from '@mui/icons-material/Save';
 
 // DatePicker
 import DatePicker, {registerLocale} from "react-datepicker";
@@ -70,9 +71,15 @@ export const GeneracionAsientosPage = () => {
         <div className='mt-3 border p-2'>
           <div className='bg-darks d-flex justify-content-between align-items-center'>
             <h5>Datos Generales</h5>
-            <Button variant="text" data-bs-toggle="collapse" data-bs-target="#collapseDatosGenerales" aria-expanded="true" aria-controls="collapseDatosGenerales" >
-              <ExpandMoreIcon fontSize='large' className='p-0' />
-            </Button>
+            <div className='d-flex'>
+              <Button>
+                <SaveIcon />
+                Guardar Cambios
+              </Button>
+              <Button variant="text" data-bs-toggle="collapse" data-bs-target="#collapseDatosGenerales" aria-expanded="true" aria-controls="collapseDatosGenerales" >
+                <ExpandMoreIcon fontSize='large' className='p-0' />
+              </Button>
+            </div>
           </div>
 
           <div className="collapse show" id="collapseDatosGenerales">
@@ -244,13 +251,17 @@ export const GeneracionAsientosPage = () => {
         </div>
         {/* Fin Tabla */}
 
-        <div className='d-flex justify-content-between mt-3 border p-2 '>
+
+        {/* Debe, Haber, Diferencia */}
+        <div className='d-flex justify-content-between flex-column flex-sm-row mt-3 border p-2 mb-5'>
           <Grid item xs={12} sx={{mt: 4}}>
             <TextField 
-              type='text'
-              name='searchCuenta'
-              variant='standard'
-              
+              type='number'
+              name='totalDebe'
+              className='w-100'
+              defaultValue={0}
+              disabled
+
               // startAdornmen
               InputProps={{
                 startAdornment: (
@@ -265,9 +276,14 @@ export const GeneracionAsientosPage = () => {
 
           <Grid item xs={12} sx={{mt: 4}}>
             <TextField 
-              type='text'
-              name='searchCuenta'
-              variant='standard'
+              type='number'
+              name='totalHaber'
+              className='w-100'
+              defaultValue={0}
+              disabled
+
+              // data-decimal= "."
+              // data-thousands= ","
               
               // startAdornmen
               InputProps={{
@@ -284,10 +300,11 @@ export const GeneracionAsientosPage = () => {
           <Grid item xs={12} sx={{mt: 4}}>
             <TextField 
               type='text'
-              name='searchCuenta'
-              variant='standard'
-              color='error'
+              name='totalDiferencia'
+              className='w-100'
+              // color='error'
               defaultValue={0}
+              disabled
               
               // startAdornmen
               InputProps={{
