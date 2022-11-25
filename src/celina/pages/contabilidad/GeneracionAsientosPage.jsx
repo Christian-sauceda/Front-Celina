@@ -69,7 +69,7 @@ export const GeneracionAsientosPage = () => {
 
         {/* Inicio Primer Form */}
         <div className='mt-3 border p-2'>
-          <div className='bg-darks d-flex justify-content-between align-items-center'>
+          <div className='d-flex justify-content-between align-items-center'>
             <h5>Datos Generales</h5>
             <div className='d-flex'>
               <Button>
@@ -193,7 +193,7 @@ export const GeneracionAsientosPage = () => {
 
         {/* Inicio Tabla */}
         <div className='mt-3 border p-2'>
-          <div className='bg-darks d-flex justify-content-between align-items-center'>
+          <div className='d-flex justify-content-between align-items-center'>
             <h5>Cuentas Agregadas</h5>
             <Button variant="text" data-bs-toggle="collapse" data-bs-target="#collapseCuentasAgregadas" aria-expanded="true" aria-controls="collapseCuentasAgregadas" >
               <ExpandMoreIcon fontSize='large' className='p-0' />
