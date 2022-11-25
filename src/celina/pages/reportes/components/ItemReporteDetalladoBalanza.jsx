@@ -18,6 +18,11 @@ const options = {
   responsive: 'simple'
 };
 
+// TODO ================================================================================================
+// TODO Me falta cambiarle la parte de abajo (osea la que muestra los totales y eso...)
+// TODO ================================================================================================
+
+
 export const ItemReporteDetalladoBalanza = () => {
   return (
     <>
