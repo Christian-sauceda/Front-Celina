@@ -1,5 +1,6 @@
 
 import MUIDataTable from "mui-datatables"
+
 import { dataReporteGrupalBalanza } from "../../../../assets/dataReporteGrupalBalanza";
 
 import './stylesBalances.css'
@@ -7,17 +8,16 @@ import './stylesBalances.css'
 //* Estructura y Configuracion de la Tabla Balance General y
 const columns = [
     {name: 'Cuentas'},
-    {name: 'Movimiento Deudor'},
-    {name: 'Movimiento Acreedor'},
-    {name: 'Saldo Deudor'},
-    {name: 'Saldo Acreedor'},
+    {name: 'SubCuenta'},
+    {name: 'Saldos'},
+    {name: 'Totales'},
   ]
-const options = {
+  const options = {
     filterType: 'dropdown',
     responsive: 'simple'
   };
 
-export const ItemReporteGrupalBalanza = () => {
+export const ItemReporteDetalladoEstadoResultado = () => {
   return (
     <>
       <MUIDataTable
@@ -28,18 +28,17 @@ export const ItemReporteGrupalBalanza = () => {
           options={options} 
       />
       <div className='fs-5 fw-bold animate__animated animate__fadeIn style_balance_table '>
-          <table className='table'>
-          <tbody>
-              <tr>
-                <th className='text-white' scope="row">Totales</th>
-                <td className='text-white'>L. 0.00</td>
-                <td className='text-white'>L. 0.00</td>
-                <td className='text-white'>L. 0.00</td>
-                <td className='text-white'>L. 0.00</td>
-              </tr>
-          </tbody>
-          </table>
-      </div>
+            <table className='table'>
+            <tbody>
+                <tr>
+                    <th className='text-white' scope="row">Resultados de la Operación</th>
+                    <td></td>
+                    <td></td>
+                    <td className='text-white'>L. 27.11</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
     </>
   )
 }

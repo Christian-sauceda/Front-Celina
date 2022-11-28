@@ -8,9 +8,6 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SummarizeIcon from '@mui/icons-material/Summarize';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
-import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 // Components
 import { ItemReporteDetalladoBalanza, ItemReporteGrupalBalanza } from './components';

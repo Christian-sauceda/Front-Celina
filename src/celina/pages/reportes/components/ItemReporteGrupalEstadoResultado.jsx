@@ -1,7 +1,6 @@
 
 import MUIDataTable from "mui-datatables"
-
-import { dataReporteGrupal } from "../../../../assets/dataReporteGrupal"
+import { dataReporteGrupalBalanza } from "../../../../assets/dataReporteGrupalBalanza";
 
 import './stylesBalances.css'
 
@@ -9,21 +8,21 @@ import './stylesBalances.css'
 const columns = [
     {name: 'Cuentas'},
     {name: 'Saldos'},
-    {name: 'Total Cuenta'},
-    {name: 'Total General'},
-]
+    {name: 'Totales'},
+  ]
 const options = {
     filterType: 'dropdown',
     responsive: 'simple'
-};
+  };
 
-export const ItemReporteGrupalBalance = () => {
+
+export const ItemReporteGrupalEstadoResultado = () => {
   return (
     <>
         <MUIDataTable
             className='animate__animated animate__fadeIn'
             title={"Reporte Grupal"}
-            data={dataReporteGrupal}
+            data={dataReporteGrupalBalanza}
             columns={columns}
             options={options} 
         />
@@ -31,10 +30,10 @@ export const ItemReporteGrupalBalance = () => {
             <table className='table'>
             <tbody>
                 <tr>
-                    <th className='text-white' scope="row">Diferencias de la Operación</th>
+                    <th className='text-white' scope="row">Resultados de la Operación</th>
                     <td></td>
                     <td></td>
-                    <td className='text-white'>27.11</td>
+                    <td className='text-white'>L. 27.11</td>
                 </tr>
             </tbody>
             </table>

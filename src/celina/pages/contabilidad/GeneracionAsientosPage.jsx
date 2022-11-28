@@ -146,6 +146,19 @@ export const GeneracionAsientosPage = () => {
                     />
                 </Grid>
 
+                <Grid item xs={12} sx={{mt: 2}}>
+                    <InputLabel>Detalle</InputLabel>
+                    <TextField
+                      type='textarea' 
+                      placeholder='Escriba algun detalle...' 
+                      fullWidth
+                      name='direccion'
+                      // onChange={}
+                      // error={}              
+                      // helperText={}
+                    />
+                </Grid>
+
                 <div className='d-flex w-100 justify-content-between'>
                   <Grid item xs={12} sx={{m: 2}}>
                       <InputLabel>Monto</InputLabel>
@@ -215,7 +228,7 @@ export const GeneracionAsientosPage = () => {
                 <tr>
                   <th scope="row">616161 COMBUSTIBLE/GAS LPG	</th>
                   <td>12.11	</td>
-                  <td>NadaAun</td>
+                  <td>20</td>
                   <td>
                     <Button variant="contained" color='error'>
                       <DeleteIcon />
@@ -225,7 +238,7 @@ export const GeneracionAsientosPage = () => {
                 <tr>
                   <th scope="row">616161 COMBUSTIBLE/GAS LPG	</th>
                   <td>12.11	</td>
-                  <td>NadaAun</td>
+                  <td>20</td>
                   <td>
                     <Button variant="contained" color='error'>
                       <DeleteIcon />
@@ -236,7 +249,7 @@ export const GeneracionAsientosPage = () => {
                 <tr>
                   <th scope="row">616161 COMBUSTIBLE/GAS LPG	</th>
                   <td>12.11	</td>
-                  <td>NadaAun</td>
+                  <td>20</td>
                   <td>
                     <Button variant="contained" color='error'>
                       <DeleteIcon />
@@ -259,13 +272,13 @@ export const GeneracionAsientosPage = () => {
               type='number'
               name='totalDebe'
               className='w-100'
-              defaultValue={0}
+              defaultValue={45}
               disabled
 
               // startAdornmen
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className='text-dark' position="start">
                     Debe
                     <ExpandLessIcon />
                   </InputAdornment>
@@ -288,7 +301,7 @@ export const GeneracionAsientosPage = () => {
               // startAdornmen
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className='text-dark' position="start">
                     Haber
                     <ExpandMoreIcon />
                   </InputAdornment>
@@ -309,7 +322,7 @@ export const GeneracionAsientosPage = () => {
               // startAdornmen
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className='text-dark' position="start">
                     Diferencia
                     <UnfoldLessIcon />
                   </InputAdornment>

@@ -37,15 +37,15 @@ export const ItemReporteDetalladoBalanza = () => {
           <table className='table'>
           <tbody>
               <tr>
-              <th className='text-white' scope="row">Diferencias de la Operación</th>
-              <td></td>
-              <td></td>
-              <td className='text-white'>27.11</td>
+              <th className='text-white' scope="row">Totales</th>
+              <td className='text-white'>L. 0.00</td>
+              <td className='text-white'>L. 0.00</td>
+              <td className='text-white'>L. 0.00</td>
+              <td className='text-white'>L. 0.00</td>
               </tr>
           </tbody>
           </table>
       </div>
     </>
-    
   )
 }

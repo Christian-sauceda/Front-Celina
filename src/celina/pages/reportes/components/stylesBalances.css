@@ -2,3 +2,8 @@
 .style_balance_table {
     background: #21447A;
 }
+
+.style_totales span{
+    /* background: red; */
+    /* margin-right: 7rem !important; */
+}
