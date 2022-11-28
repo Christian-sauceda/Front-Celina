@@ -8,6 +8,8 @@ export const uiSlice = createSlice({
         isUsuariosModalOpen: false,
         isEmpresasModalOpen: false,
         isAsientosModalOpen: false,
+        isGeneracionAsientosTemporalesModalOpen: false,
+        isGeneracionAsientosMayorizadosModalOpen: false,
     },
     reducers: {
 
@@ -34,6 +36,21 @@ export const uiSlice = createSlice({
         onCloseAsientosModal: (state, /* action */) => {
             state.isAsientosModalOpen = false;
         },
+
+        //* Modal Generacion Asientos
+        onOpenGeneracionAsientosTemporales: (state, /* action */) => {
+            state.isGeneracionAsientosTemporalesModalOpen = true;
+        },
+        onCloseGeneracionAsientosTemporales: (state, /* action */) => {
+            state.isGeneracionAsientosTemporalesModalOpen = false;
+        },
+
+        onOpenGeneracionAsientosMayorizados: (state, /* action */) => {
+            state.isGeneracionAsientosMayorizadosModalOpen = true;
+        },
+        onCloseGeneracionAsientosMayorizados: (state, /* action */) => {
+            state.isGeneracionAsientosMayorizadosModalOpen = false;
+        },
     }
 })
 
@@ -45,7 +62,11 @@ export const {
     onCloseEmpresasModal,
 
     onOpenAsientosModal,
-    onCloseAsientosModal
+    onCloseAsientosModal,
 
+    onOpenGeneracionAsientosTemporales,
+    onCloseGeneracionAsientosTemporales,
+    onOpenGeneracionAsientosMayorizados,
+    onCloseGeneracionAsientosMayorizados,
 
 } = uiSlice.actions;

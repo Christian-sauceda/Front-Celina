@@ -24,7 +24,7 @@ import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
 
-  //* Configuraciones del Modal
+//* Configuraciones del Modal
 const customStyles = {
     content: {
       top: '50%',
@@ -36,8 +36,6 @@ const customStyles = {
     },
 };
 Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de React
-
-
 
 export const UsuariosModal = () => {
   const {isUsuariosModalOpen, closeUsuariosModal} = useUiStoreUsuarios()

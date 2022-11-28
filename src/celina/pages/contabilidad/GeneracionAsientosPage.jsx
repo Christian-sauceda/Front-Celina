@@ -14,14 +14,22 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
 import SaveIcon from '@mui/icons-material/Save';
 
+// Custom Hooks
+import { useUiStoreGeneracionAsientos } from '../../../hooks';
+
+// Components
+import { GeneracionAsientosTemporalesModal, GeneracionAsientosMayorizadosModal } from './';
+
 // DatePicker
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
 
-
 export const GeneracionAsientosPage = () => {
+
+  const {openGeneracionAsientosTemporalesModal, openGeneracionAsientosMayorizadosModal} = useUiStoreGeneracionAsientos()
+
   return (
     <>
       <div className="container-fluid mt-4">
@@ -43,6 +51,7 @@ export const GeneracionAsientosPage = () => {
               className="d-flex flex-column m-1" 
               variant="outlined" 
               // startIcon={<FolderIcon fontSize='large' />}
+              onClick={openGeneracionAsientosTemporalesModal}
             >
               <FolderIcon />
               Abrir AT
@@ -52,6 +61,7 @@ export const GeneracionAsientosPage = () => {
               className="d-flex flex-column m-1" 
               variant="outlined" 
               // startIcon={<BookIcon fontSize='large' />}
+              onClick={openGeneracionAsientosMayorizadosModal}
             >
               <BookIcon />
               Abrir AM
@@ -330,11 +340,14 @@ export const GeneracionAsientosPage = () => {
               }}
             />
           </Grid>
-
         </div>
-
-
       </div>
+
+      {/* Modal de Asientos Temporales */}
+      <GeneracionAsientosTemporalesModal />
+      {/* Modal de Asientos Temporales */}
+      <GeneracionAsientosMayorizadosModal />
+
     </>
   )
 }
