@@ -35,10 +35,15 @@
     display: inline;
     /* max-height: 620px; */
     max-height: 90vh;
-    max-width: 700px;
+    max-width: 1000px;
     outline: none;
     padding: 10px;
 
     /* Extra Styles */
     padding-top: 0;
+}
+
+.modal-generacion-asientos-temporales-modal {
+    max-height: 90vh;
+    /* max-width: 47vw; */
 }

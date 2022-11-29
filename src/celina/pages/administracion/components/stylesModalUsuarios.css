@@ -45,8 +45,8 @@
 
 /* Extra Styles */
 .modal-empresas-height {
-    max-height: 60vh;
+    max-height: 62vh !important;
 }
 .modal-asientos-height {
-    max-height: 40vh;
+    max-height: 40vh !important;
 }

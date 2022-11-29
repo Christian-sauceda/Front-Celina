@@ -1,5 +1,11 @@
 
+import MUIDataTable from "mui-datatables"
+
 import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AddIcon from '@mui/icons-material/Add';
 
 // Import Modal
 import Modal from "react-modal"
@@ -8,6 +14,8 @@ import Modal from "react-modal"
 import { useUiStoreGeneracionAsientos } from "../../../../hooks";
 
 import './stylesModalGeneracionAsientos.css'
+import { Button } from "@mui/material";
+import { dataGeneracionAsientosTemp } from "../../../../assets/dataGeneracionAsientosTemp";
 
 //* Configuraciones del Modal
 const customStyles = {
@@ -25,14 +33,45 @@ Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de 
 export const GeneracionAsientosTemporalesModal = () => {
   const {isGeneracionAsientosTemporalesModalOpen, closeGeneracionAsientosTemporalesModal} = useUiStoreGeneracionAsientos()
 
-  // TODO me quede por terminar el Modal de Generar "Asientos Temporales" y tambien me faltan el de "Asientos Mayorizados"
+  const columns = [
+    {name: 'Asiento'},
+    {name: 'Fecha'},
+    {name: 'Detalle'},
+    {name: 'Tipo'},
+    {name: 'Usuarios'},
+    {name: 'Vista Previa', options: {
+      customBodyRender: (value, tableMeta, updateValue) => {
+        {/* ================ TODOOOOOOOOOOOOOOOO ================ */}
+        {/* Aca necesitare el ID del dato para usarlo como el "id"(en el "data-bs-target") que "Colapsara" el boton al darle click, y ese mismo "id" es el que pondre en el collapse para colapsarlo con su boton correspodient. (El Id que tengo en el boton de momento solo es por mientras igual que el del "collapse"*/}
+        return (
+          <Button className="mb-2" fullWidth variant="outlined" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <ExpandMoreIcon />
+          </Button>
+        )
+      }
+    }},
+    {name: 'Accion', options: {
+      customBodyRender: (value, tableMeta, updateValue) => {
+        return (
+          <Button variant="outlined" startIcon={<AddIcon />}>
+            Agregar
+          </Button>
+        )
+      }
+    }}
+  ]
+
+  const options = {
+    filterType: 'dropdown',
+    responsive: 'standard'
+  };
 
   return (
     <Modal
       isOpen={isGeneracionAsientosTemporalesModalOpen}
       onRequestClose={closeGeneracionAsientosTemporalesModal}
       style={customStyles}
-      className="modal"
+      className="modal modal-generacion-asientos-temporales-modal"
       overlayClassName="modal-fondo"
       closeTimeoutMS={200}
     >
@@ -41,6 +80,14 @@ export const GeneracionAsientosTemporalesModal = () => {
         <FolderIcon fontSize='large' className='me-2' />
         <h2>Asientos Temporales</h2>
       </div>
+
+      <MUIDataTable
+        className='animate__animated animate__fadeIn'
+        title={"Usuarios"}
+        data={dataGeneracionAsientosTemp}
+        columns={columns}
+        options={options} 
+      />
     </Modal>
   )
 

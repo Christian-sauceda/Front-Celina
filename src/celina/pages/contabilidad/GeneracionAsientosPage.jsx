@@ -28,6 +28,8 @@ registerLocale('es', es)
 
 export const GeneracionAsientosPage = () => {
 
+  
+
   const {openGeneracionAsientosTemporalesModal, openGeneracionAsientosMayorizadosModal} = useUiStoreGeneracionAsientos()
 
   return (

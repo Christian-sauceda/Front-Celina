@@ -6,9 +6,7 @@ import './stylesBalances.css'
 
 //* Estructura y Configuracion de la Tabla Balance General y
 const columns = [
-    {name: 'Clase'},
     {name: 'Cuentas'},
-    {name: 'Cuenta'},
     {name: 'SubCuenta'},
     {name: 'Saldos'},
     {name: 'Total Cuenta'},
@@ -37,7 +35,7 @@ export const ItemReporteDetalladoBalance = () => {
                 <th className='text-white' scope="row">Diferencias de la Operación</th>
                 <td></td>
                 <td></td>
-                <td className='text-white'>{42 * 3}</td>
+                <td className='text-white'>L. {42 * 3}</td>
                 </tr>
             </tbody>
             </table>
