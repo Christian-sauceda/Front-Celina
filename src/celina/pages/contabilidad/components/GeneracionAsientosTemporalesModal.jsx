@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 // Import Modal
 import Modal from "react-modal"
@@ -16,6 +17,9 @@ import { useUiStoreGeneracionAsientos } from "../../../../hooks";
 import './stylesModalGeneracionAsientos.css'
 import { Button } from "@mui/material";
 import { dataGeneracionAsientosTemp } from "../../../../assets/dataGeneracionAsientosTemp";
+
+// Components
+import { TableDetalle } from "./TableDetalle";
 
 //* Configuraciones del Modal
 const customStyles = {
@@ -32,24 +36,13 @@ Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de 
 
 export const GeneracionAsientosTemporalesModal = () => {
   const {isGeneracionAsientosTemporalesModalOpen, closeGeneracionAsientosTemporalesModal} = useUiStoreGeneracionAsientos()
-
+  
   const columns = [
     {name: 'Asiento'},
     {name: 'Fecha'},
     {name: 'Detalle'},
     {name: 'Tipo'},
     {name: 'Usuarios'},
-    {name: 'Vista Previa', options: {
-      customBodyRender: (value, tableMeta, updateValue) => {
-        {/* ================ TODOOOOOOOOOOOOOOOO ================ */}
-        {/* Aca necesitare el ID del dato para usarlo como el "id"(en el "data-bs-target") que "Colapsara" el boton al darle click, y ese mismo "id" es el que pondre en el collapse para colapsarlo con su boton correspodient. (El Id que tengo en el boton de momento solo es por mientras igual que el del "collapse"*/}
-        return (
-          <Button className="mb-2" fullWidth variant="outlined" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <ExpandMoreIcon />
-          </Button>
-        )
-      }
-    }},
     {name: 'Accion', options: {
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
@@ -58,12 +51,31 @@ export const GeneracionAsientosTemporalesModal = () => {
           </Button>
         )
       }
-    }}
+    }},
+    {name: 'Vista Previa', options: {
+      customBodyRender: (value, tableMeta, updateValue) => {
+        return (
+          <>
+            <Button className="mb-2" fullWidth variant="outlined" onClick={() => console.log('META >> ', tableMeta.rowData)}  data-bs-toggle="collapse" data-bs-target={`#id${tableMeta.rowData[0]}`} aria-expanded="false" aria-controls={`#id${tableMeta.rowData[0]}`}>
+              <ExpandMoreIcon />
+            </Button>
+            <TableDetalle id_elemento={`id${tableMeta.rowData[0]}`} />
+          </>
+        )
+      }
+    }},
+    // {name: '', options: {
+    //   customBodyRender: (value, tableMeta, updateValue) => {
+    //     return (
+    //         <TableDetalle id_elemento={`id${tableMeta.rowData[0]}`} />
+    //     )
+    //   }
+    // }}
   ]
 
   const options = {
     filterType: 'dropdown',
-    responsive: 'standard'
+    responsive: 'standard',
   };
 
   return (
@@ -86,7 +98,7 @@ export const GeneracionAsientosTemporalesModal = () => {
         title={"Usuarios"}
         data={dataGeneracionAsientosTemp}
         columns={columns}
-        options={options} 
+        options={options}
       />
     </Modal>
   )
