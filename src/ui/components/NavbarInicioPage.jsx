@@ -3,10 +3,18 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 import './stylesNavbar.css'
 
-export const NavbarInicioPage = () => {
+import { useDispatch } from 'react-redux';
 
-  // TODO Por aca me quede, tengo que crear un Navbar atractico con iconos de esa url y a ver que procede...
-  // https://mui.com/material-ui/material-icons/
+// Slices
+import { onLogout } from '../../store';
+import { Button } from '@mui/material';
+
+export const NavbarInicioPage = () => {
+  const dispatch = useDispatch()
+
+  const closeSession = () => {
+      dispatch(onLogout())
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-fondo">
@@ -17,13 +25,13 @@ export const NavbarInicioPage = () => {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div className="navbar-nav mr-auto">
-            <a className="nav-link text-light d-flex align-items-center cerrar_sesion px-3 me-3" href="#">
+            <Button className="text-light d-flex align-items-center cerrar_sesion px-3 me-3" onClick={closeSession}>
               <PowerSettingsNewIcon 
                 fontSize='small'
                 className='me-1'
               />
               Cerrar Sesion
-            </a>
+            </Button>
           </div>
         </div>
       </div>

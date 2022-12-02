@@ -15,8 +15,26 @@ import './stylesSidebar.css'
 
 import imagenPerfil from '../../assets/perfil.png'
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Slices
+import { onLeaveEmpresa, onLogout } from '../../store';
 
 export const Sidebar = ( {children} ) => {
+    const dispatch = useDispatch()
+
+    const {empresaSeleccionada} = useSelector(state => state.selectEmpresa)
+    const {userAuth, roleUser} = useSelector(state => state.auth)
+
+    const closeSession = () => {
+        dispatch(onLeaveEmpresa())
+        dispatch(onLogout())
+    }
+
+    const leaveEmpresa = () => {
+        dispatch(onLeaveEmpresa())
+    }
+
   return (
     <div className="container-fluid">
         <div className="row flex-nowrap">
@@ -25,7 +43,7 @@ export const Sidebar = ( {children} ) => {
 
                     <div id="sidebar-nav" className="list-group border-0 rounded-0 text-sm-start min-vh-100 sidebar_nav_styles">
                         
-                        <h3 className='text-center my-2'>APPTECK</h3>
+                        <h3 className='text-center my-2'>{empresaSeleccionada.nombre.toUpperCase()}</h3>
 
                         {/* Perfil Usuario */}
                         <div className="card card_styles">
@@ -34,14 +52,14 @@ export const Sidebar = ( {children} ) => {
                             </div>
                             <div className="card-body">
                                 <div className='d-flex flex-column align-items-center'>
-                                    <span className='profile_username_styles'>Lucas</span>
-                                    <span className='role_title_styles'>Super Administrador</span>
+                                    <span className='profile_username_styles'>{userAuth}</span>
+                                    <span className='role_title_styles'>{roleUser}</span>
                                 </div>
 
                                 <div className='d-flex justify-content-between my-2'>
                                     <NavLink to='/profile'><PersonIcon /></NavLink>
                                     <NavLink href='#'><SettingsIcon /></NavLink>
-                                    <NavLink to='/empresas-init'><LogoutIcon /></NavLink>
+                                    <NavLink onClick={leaveEmpresa} ><LogoutIcon /></NavLink>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +133,8 @@ export const Sidebar = ( {children} ) => {
                             <NavLink to='/utilidades/bitacora' className="list-group-item border-end-0 d-inline-block text-truncate w-100" data-bs-parent="#sidebar"><KeyboardArrowRightIcon fontSize='small' /> <span>Consulta Bitacora</span> </NavLink>
                         </div>
 
-                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate salir_sistema_styles mt-5" data-bs-parent="#sidebar"><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
+                        <a href="#" className="list-group-item border-end-0 d-inline-block text-truncate salir_sistema_styles mt-5" data-bs-parent="#sidebar" onClick={closeSession}><PowerSettingsNewIcon fontSize='small' /> <span>Salir del Sistema</span></a>
+                        {/* <button className='btn btn-danger'>Prueba salir</button> */}
                     </div>
                 </div>
             </div>

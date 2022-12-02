@@ -44,6 +44,11 @@
 }
 
 .modal-generacion-asientos-temporales-modal {
-    max-height: 90vh;
+    max-height: 75vh;
+    /* max-width: 47vw; */
+}
+
+.modal-generacion-asientos-mayorizados-modal {
+    max-height: 75vh;
     /* max-width: 47vw; */
 }

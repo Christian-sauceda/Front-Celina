@@ -15,6 +15,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './stylesLoginPage.css'
 import imagenLoginPage from '../../assets/loginimg.jpg'
+import { useDispatch } from 'react-redux';
+
+import {backCelinaApi} from '../../api'
+
+// Slices
+import { onLogin } from '../../store';
 
 function Copyright(props) {
   return (
@@ -32,13 +38,45 @@ function Copyright(props) {
 const theme = createTheme();
 
 export const LoginPage = () => {
-  const handleSubmit = (event) => {
+  const dispatch = useDispatch()
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const dataForm = new FormData(event.currentTarget);
+    const sendData = {
+      NAME: dataForm.get('username'),
+      PASSWORD: dataForm.get('password')
+    }
+    
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    console.log('DATOS >> ', sendData)
+    const {data} = await backCelinaApi.post('/login', sendData)
+    const {token} = data;
+    console.log('AXIOS data >> ', data)
+    console.log('AXIOS TOKEN >> ', token)
+
+    // TODO ==================================================================================================
+    // TODO Esto solo es de prueba, ya que lo hare usando "Axios" por la "BaseURL y middlewares"
+    // TODO ==================================================================================================
+
+    
+
+    // const resp = await fetch(`http://localhost:3000/login`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(sendData)
+    // })
+    // // console.log('RESP >> ', resp)
+    // const miDataResp = await resp.json()
+    // console.log('MI DATA RESP >> ', miDataResp)
+
+    // dispatch(onLogin(miDataResp))
+
   };
 
   return (

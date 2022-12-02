@@ -1,10 +1,13 @@
 import { Sidebar } from "../../ui"
 
+import { useSelector } from "react-redux"
 
 import './stylesInicioPage.css'
 
 export const InicioPage = () => {
- 
+
+  const {empresaSeleccionada} = useSelector(state => state.selectEmpresa)
+
   return (
     <>
       {/* <Sidebar> */}
@@ -14,7 +17,7 @@ export const InicioPage = () => {
           <div className="bienvenido_styles">
             Bienvenido a
           </div>
-          <h1 className="empresa_title_inicio_styles">APPTECK</h1>
+          <h1 className="empresa_title_inicio_styles">{empresaSeleccionada.nombre.toUpperCase()}</h1>
           <div className="copyright_styles_inicio">
             © {new Date().getFullYear()} Celina.
           </div>

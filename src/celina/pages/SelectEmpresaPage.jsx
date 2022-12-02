@@ -2,15 +2,28 @@ import { NavbarInicioPage } from "../../ui"
 import ShortcutIcon from '@mui/icons-material/Shortcut';
 import { Link } from "react-router-dom";
 
-import { Skeleton } from '@mui/material';
+import { Button, Skeleton } from '@mui/material';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+// Slices
+import { onSelectEmpresa } from "../../store";
+
 
 export const SelectEmpresaPage = () => {
   const [prueba, setPrueba] = useState(false)
+  const dispatch = useDispatch()
+
+  const selectEmpresa = (nombre, idEmpresa) => { // TODO Sustituir todos los "LINK" por "Buttons" para que solo se redirija en caso de seleccionar una empresa... Lo hara directamente con el "hook" que luego creare, ya que automaticamente eliminara la ruta de "empresas-init" y por lo tanto la enviara directamente a la ruta "inicio" con la empresa seleccionada
+    dispatch(onSelectEmpresa({
+      nombre,
+      idEmpresa
+    }))
+  }
 
   setTimeout(() => { //* Esto solo para simular que se estan consultando los datos y probar el Skeleton
     setPrueba(true)
-  }, 3000);
+  }, 100);
 
   return (
     <>
@@ -31,11 +44,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">Lucas</h5>
+                  <button onClick={() => selectEmpresa('lucas', 123)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -44,10 +57,10 @@ export const SelectEmpresaPage = () => {
               <div className="card card-styles" >
                 <div className="card-body">
                   <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <button onClick={() => selectEmpresa('appteck', 221)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -55,11 +68,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">Darknet</h5>
+                  <button onClick={() => selectEmpresa('darknet', 333)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -67,11 +80,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">Kings</h5>
+                  <button onClick={() => selectEmpresa('kings', 121)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -79,11 +92,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">StevenKing</h5>
+                  <button onClick={() => selectEmpresa('StevenKing', 551)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -91,11 +104,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">Sufjan</h5>
+                  <button onClick={() => selectEmpresa('Sufjan', 552)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -103,11 +116,11 @@ export const SelectEmpresaPage = () => {
             <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
               <div className="card card-styles" >
                 <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <Link to='/inicio' className="btn btn-primary mt-3 btn-ingresar">
+                  <h5 className="card-title title-empresa">KickBoxing</h5>
+                  <button onClick={() => selectEmpresa('KickBoxing', 844)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

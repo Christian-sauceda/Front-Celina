@@ -7,6 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Button } from "@mui/material";
+
 
 // Import Modal
 import Modal from "react-modal"
@@ -15,7 +17,6 @@ import Modal from "react-modal"
 import { useUiStoreGeneracionAsientos } from "../../../../hooks";
 
 import './stylesModalGeneracionAsientos.css'
-import { Button } from "@mui/material";
 import { dataGeneracionAsientosTemp } from "../../../../assets/dataGeneracionAsientosTemp";
 
 // Components
@@ -95,7 +96,7 @@ export const GeneracionAsientosTemporalesModal = () => {
 
       <MUIDataTable
         className='animate__animated animate__fadeIn'
-        title={"Usuarios"}
+        title={"Asientos Temporales"}
         data={dataGeneracionAsientosTemp}
         columns={columns}
         options={options}
