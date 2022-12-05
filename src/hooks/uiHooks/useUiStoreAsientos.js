@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onCloseAsientosModal, onOpenAsientosModal } from "../store"
+import { onCloseAsientosModal, onOpenAsientosModal } from "../../store"
 
 export const useUiStoreAsientos = () => {
 

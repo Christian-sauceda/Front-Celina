@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onCloseEmpresasModal, onOpenEmpresasModal } from "../store"
+import { onCloseEmpresasModal, onOpenEmpresasModal } from "../../store"
 
 export const useUiStoreEmpresas = () => {
     const dispatch = useDispatch()

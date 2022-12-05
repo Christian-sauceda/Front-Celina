@@ -4,21 +4,21 @@ import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { CircularProgress } from '@mui/material';
 
-
-//? DATA MOMENTANEA (LUEGO LA BORRARE)
-import {dataUsuarios} from '../../../assets/dataUsuarios'
+// Components
 import { UsuariosModal } from "./";
 
 // Custom Hooks
-import { useUiStoreUsuarios } from "../../../hooks";
+import { useUiStoreUsuarios, useUsuarios } from "../../../hooks";
+import { useEffect } from "react";
 
 export const UsuariosPage = () => {
-  // const columns = ["ID de Usuario", "Primer Nombre", "Segundo Nombre", "Apellidos", "Email", "Sexo", "Estado Civil", "Edad", "Telefono Movil", "Tipo Usuario", "Pais", "Estado", "Ciudad", "Accion"];
   const {openUsuariosModal} = useUiStoreUsuarios() // Hook para Abrir Modal de Usuarios
+  const {usuarios, startGetUsuarios} = useUsuarios() // Hook para traer Usuarios de la DB
 
   const columns = [
-    {name: 'ID de Usuario'},
+    {name: 'Nombre de Usuario'},
     {name: 'Primer Nombre'},
     {name: 'Segundo Nombre'},
     {name: 'Apellidos'},
@@ -46,11 +46,14 @@ export const UsuariosPage = () => {
       }
     }},
   ]
-
   const options = {
     filterType: 'dropdown',
     responsive: 'simple'
   };
+
+  useEffect(() => { //* Traer usuarios de la DB
+    startGetUsuarios()
+  }, [])
 
   return (
     <>
@@ -67,13 +70,32 @@ export const UsuariosPage = () => {
           </Button>
         </div>
 
-        <MUIDataTable
-          className='animate__animated animate__fadeIn'
-          title={"Usuarios"}
-          data={dataUsuarios}
-          columns={columns}
-          options={options} 
-        />
+        {
+          usuarios === null //* Enviar si de verdad hay usuarios
+          ? <span>No hay usuarios registrados...</span>
+          : (
+            usuarios.length < 1 
+            ? (
+              <>
+                <CircularProgress />
+                <span>Buscando usuarios...</span>
+              </>
+            )
+            : 
+            (
+              <MUIDataTable
+                className='animate__animated animate__fadeIn'
+                title={"Usuarios"}
+                data={usuarios}
+                columns={columns}
+                options={options} 
+              />
+          )
+          )
+
+          
+        }
+        
       </div>
 
       <UsuariosModal />

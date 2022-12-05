@@ -9,10 +9,15 @@ import { useDispatch } from "react-redux";
 // Slices
 import { onSelectEmpresa } from "../../store";
 
+// Custom Hooks
+import { useEmpresasStore } from "../../hooks";
+import { useEffect } from "react";
+
 
 export const SelectEmpresaPage = () => {
   const [prueba, setPrueba] = useState(false)
   const dispatch = useDispatch()
+  const {empresasPorUserLogged, startGetEmpresasPorCodUserLogeado} = useEmpresasStore()
 
   const selectEmpresa = (nombre, idEmpresa) => { // TODO Sustituir todos los "LINK" por "Buttons" para que solo se redirija en caso de seleccionar una empresa... Lo hara directamente con el "hook" que luego creare, ya que automaticamente eliminara la ruta de "empresas-init" y por lo tanto la enviara directamente a la ruta "inicio" con la empresa seleccionada
     dispatch(onSelectEmpresa({
@@ -24,6 +29,19 @@ export const SelectEmpresaPage = () => {
   setTimeout(() => { //* Esto solo para simular que se estan consultando los datos y probar el Skeleton
     setPrueba(true)
   }, 100);
+
+  useEffect(() => {
+    startGetEmpresasPorCodUserLogeado()
+  }, [])
+  // TODO ===========================================================================================
+  // TODO ===========================================================================================
+  // TODO ===========================================================================================
+  // TODO ===========================================================================================
+  // TODO ME QUEDE POR ACA OCUPO CARGAR LA CANTIDAD DE EMPRESAS DEL USUARIO LOGEADO
+  // TODO ===========================================================================================
+  // TODO ===========================================================================================
+  // TODO ===========================================================================================
+
 
   return (
     <>
@@ -57,7 +75,7 @@ export const SelectEmpresaPage = () => {
               <div className="card card-styles" >
                 <div className="card-body">
                   <h5 className="card-title title-empresa">AppTeck</h5>
-                  <button onClick={() => selectEmpresa('appteck', 221)} className="btn btn-primary mt-3 btn-ingresar">
+                  <button onClick={() => selectEmpresa('appteck', 3)} className="btn btn-primary mt-3 btn-ingresar">
                     Ingresar
                     <ShortcutIcon />
                   </button>

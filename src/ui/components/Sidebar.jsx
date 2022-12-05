@@ -18,17 +18,20 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Slices
-import { onLeaveEmpresa, onLogout } from '../../store';
+import { onLeaveEmpresa } from '../../store';
+
+// Custom Hooks
+import { useAuthStore } from '../../hooks/authHooks/useAuthStore';
 
 export const Sidebar = ( {children} ) => {
     const dispatch = useDispatch()
+    const {user, startLogout} = useAuthStore()
 
     const {empresaSeleccionada} = useSelector(state => state.selectEmpresa)
-    const {userAuth, roleUser} = useSelector(state => state.auth)
 
     const closeSession = () => {
         dispatch(onLeaveEmpresa())
-        dispatch(onLogout())
+        startLogout(null)
     }
 
     const leaveEmpresa = () => {
@@ -52,8 +55,8 @@ export const Sidebar = ( {children} ) => {
                             </div>
                             <div className="card-body">
                                 <div className='d-flex flex-column align-items-center'>
-                                    <span className='profile_username_styles'>{userAuth}</span>
-                                    <span className='role_title_styles'>{roleUser}</span>
+                                    <span className='profile_username_styles'>{user.userAuth}</span>
+                                    <span className='role_title_styles'>{user.roleUser}</span>
                                 </div>
 
                                 <div className='d-flex justify-content-between my-2'>

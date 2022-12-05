@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onCloseGeneracionAsientosMayorizados, onCloseGeneracionAsientosTemporales, onOpenGeneracionAsientosMayorizados, onOpenGeneracionAsientosTemporales, onOpenUsuariosModal } from "../store"
+import { onCloseGeneracionAsientosMayorizados, onCloseGeneracionAsientosTemporales, onOpenGeneracionAsientosMayorizados, onOpenGeneracionAsientosTemporales, onOpenUsuariosModal } from "../../store"
 
 export const useUiStoreGeneracionAsientos = () => {
   const dispatch = useDispatch()

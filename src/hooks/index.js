@@ -1,4 +1,3 @@
-export * from './useUiStoreUsuarios'
-export * from './useUiStoreEmpresas'
-export * from './useUiStoreAsientos'
-export * from './useUiStoreGeneracionAsientos'
+export * from './uiHooks'
+export * from './authHooks'
+export * from './administracionHooks'

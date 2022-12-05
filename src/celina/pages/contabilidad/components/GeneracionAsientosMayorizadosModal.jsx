@@ -56,7 +56,7 @@ export const GeneracionAsientosMayorizadosModal = () => {
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
           <>
-            <Button className="mb-2" fullWidth variant="outlined" onClick={() => console.log('META >> ', tableMeta.rowData)}  data-bs-toggle="collapse" data-bs-target={`#id${tableMeta.rowData[0]}`} aria-expanded="false" aria-controls={`#id${tableMeta.rowData[0]}`}>
+            <Button className="mb-2" fullWidth variant="outlined" data-bs-toggle="collapse" data-bs-target={`#id${tableMeta.rowData[0]}`} aria-expanded="false" aria-controls={`#id${tableMeta.rowData[0]}`}>
               <ExpandMoreIcon />
             </Button>
             <TableDetalle id_elemento={`id${tableMeta.rowData[0]}`} />
@@ -70,8 +70,6 @@ export const GeneracionAsientosMayorizadosModal = () => {
     filterType: 'dropdown',
     responsive: 'standard',
   };
-
-  console.log('hola mundooo')
 
   return (
     <Modal

@@ -15,12 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './stylesLoginPage.css'
 import imagenLoginPage from '../../assets/loginimg.jpg'
-import { useDispatch } from 'react-redux';
 
-import {backCelinaApi} from '../../api'
-
-// Slices
-import { onLogin } from '../../store';
+// Custom Hooks
+import { useAuthStore } from '../../hooks/authHooks/useAuthStore';
 
 function Copyright(props) {
   return (
@@ -34,11 +31,10 @@ function Copyright(props) {
     </Typography>
   );
 }
-
 const theme = createTheme();
 
 export const LoginPage = () => {
-  const dispatch = useDispatch()
+  const { startLogin } = useAuthStore()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,36 +43,8 @@ export const LoginPage = () => {
       NAME: dataForm.get('username'),
       PASSWORD: dataForm.get('password')
     }
-    
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    console.log('DATOS >> ', sendData)
-    const {data} = await backCelinaApi.post('/login', sendData)
-    const {token} = data;
-    console.log('AXIOS data >> ', data)
-    console.log('AXIOS TOKEN >> ', token)
-
-    // TODO ==================================================================================================
-    // TODO Esto solo es de prueba, ya que lo hare usando "Axios" por la "BaseURL y middlewares"
-    // TODO ==================================================================================================
-
-    
-
-    // const resp = await fetch(`http://localhost:3000/login`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(sendData)
-    // })
-    // // console.log('RESP >> ', resp)
-    // const miDataResp = await resp.json()
-    // console.log('MI DATA RESP >> ', miDataResp)
-
-    // dispatch(onLogin(miDataResp))
-
+    // console.log('DATOS >> ', sendData)
+    startLogin(sendData)
   };
 
   return (
@@ -134,10 +102,6 @@ export const LoginPage = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordar contraseña"
               />
               <Button
                 type="submit"
