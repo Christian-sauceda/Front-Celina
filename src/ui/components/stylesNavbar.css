@@ -15,7 +15,9 @@
 
 .card-styles:hover{
     /* display: inline-block; */
-    margin-top: -0.5rem;
+    /* margin-top: -0.5rem; */
+    /* opacity: 0.9; */
+    background: rgba(209, 205, 205, 0.336);
     transition: ease-in-out 0.1s;
 }
 

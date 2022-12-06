@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 import MUIDataTable from "mui-datatables"
 import Button from '@mui/material/Button';
@@ -5,14 +6,29 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-//? DATA MOMENTANEA (LUEGO LA BORRARE)
-import {dataTipoAsientos} from '../../../assets/dataTipoAsientos'
+import { CircularProgress } from '@mui/material';
+
+// Components
 import { AsientosModal } from "./";
-import { useUiStoreAsientos } from "../../../hooks";
+
+// Hooks
+import { useTipoAsientosStore, useUiStoreAsientos } from "../../../hooks";
 
 export const AsientosPage = () => {
-  // const columns = ["Nombre", "Descripcion", "Editar", "Eliminar"]
   const {openAsientosModal} = useUiStoreAsientos()
+  const {statusGetTipoAsientos, dataTipoAsientos, errorMessageGetTipoAsientos, startGetTipoAsientos} = useTipoAsientosStore()
+
+  useEffect(() => {
+    startGetTipoAsientos()
+  }, [])
+  
+  // TODO ================================================================================================================================================
+  // TODO ================================================================================================================================================
+  //TODO Ya termine de agregar la parte de asientos, ahora me falta corregir la parte de traer "Usuarios" (ya que este lo hice solo con Hooks y lo TENGO QUE HACERLO CON EL "store")
+  // TODO ================================================================================================================================================
+  // TODO ================================================================================================================================================
+
+  
 
   const columns = [
     {name: 'Nombre'},
@@ -57,13 +73,30 @@ export const AsientosPage = () => {
           </Button>
         </div>
 
-        <MUIDataTable
-          className='animate__animated animate__fadeIn'
-          title={"Tipos de Asientos"}
-          data={dataTipoAsientos}
-          columns={columns}
-          options={options} 
-        />
+        {
+          statusGetTipoAsientos === 'error'
+          ? <span>{errorMessageGetTipoAsientos}</span>
+          : (
+            statusGetTipoAsientos === 'checking'
+            ? (
+              <>
+                <CircularProgress />
+                <span>Buscando Tipos de Asientos...</span>
+              </>
+            ) : (
+              <MUIDataTable
+                className='animate__animated animate__fadeIn'
+                title={"Tipos de Asientos"}
+                data={dataTipoAsientos}
+                columns={columns}
+                options={options} 
+              />
+            )
+          )
+          
+        }
+
+        
       </div>
 
       <AsientosModal />

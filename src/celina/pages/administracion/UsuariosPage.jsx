@@ -10,12 +10,12 @@ import { CircularProgress } from '@mui/material';
 import { UsuariosModal } from "./";
 
 // Custom Hooks
-import { useUiStoreUsuarios, useUsuarios } from "../../../hooks";
+import { useUiStoreUsuarios, useUsuariosStore } from "../../../hooks";
 import { useEffect } from "react";
 
 export const UsuariosPage = () => {
   const {openUsuariosModal} = useUiStoreUsuarios() // Hook para Abrir Modal de Usuarios
-  const {usuarios, startGetUsuarios} = useUsuarios() // Hook para traer Usuarios de la DB
+  const {usuarios, startGetUsuarios} = useUsuariosStore() // Hook para traer Usuarios de la DB
 
   const columns = [
     {name: 'Nombre de Usuario'},

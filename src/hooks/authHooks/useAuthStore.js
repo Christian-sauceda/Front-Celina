@@ -40,7 +40,9 @@ export const useAuthStore = () => {
             dispatch(onLogin(data))
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
+            localStorage.clear()
+            dispatch(onLogout())
         }
     }
 

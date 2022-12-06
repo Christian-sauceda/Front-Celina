@@ -13,11 +13,12 @@ import { onSelectEmpresa } from "../../store";
 import { useEmpresasStore } from "../../hooks";
 import { useEffect } from "react";
 
+// Helpers
+import { cortarNombreEmpresa } from "../../helpers/cortarNombreEmpresa"; // Helper para evitar romper disenio con nombre de empresa muy largo (por si se llega a dar el caso)... Devolvera un string pero con "..." al final
 
 export const SelectEmpresaPage = () => {
-  const [prueba, setPrueba] = useState(false)
   const dispatch = useDispatch()
-  const {empresasPorUserLogged, startGetEmpresasPorCodUserLogeado} = useEmpresasStore()
+  const {dataEmpresas, statusGetEmpresas, errorMessageGetEmpresas, startGetEmpresasPorCodUserLogeado} = useEmpresasStore()
 
   const selectEmpresa = (nombre, idEmpresa) => { // TODO Sustituir todos los "LINK" por "Buttons" para que solo se redirija en caso de seleccionar una empresa... Lo hara directamente con el "hook" que luego creare, ya que automaticamente eliminara la ruta de "empresas-init" y por lo tanto la enviara directamente a la ruta "inicio" con la empresa seleccionada
     dispatch(onSelectEmpresa({
@@ -26,22 +27,9 @@ export const SelectEmpresaPage = () => {
     }))
   }
 
-  setTimeout(() => { //* Esto solo para simular que se estan consultando los datos y probar el Skeleton
-    setPrueba(true)
-  }, 100);
-
   useEffect(() => {
     startGetEmpresasPorCodUserLogeado()
   }, [])
-  // TODO ===========================================================================================
-  // TODO ===========================================================================================
-  // TODO ===========================================================================================
-  // TODO ===========================================================================================
-  // TODO ME QUEDE POR ACA OCUPO CARGAR LA CANTIDAD DE EMPRESAS DEL USUARIO LOGEADO
-  // TODO ===========================================================================================
-  // TODO ===========================================================================================
-  // TODO ===========================================================================================
-
 
   return (
     <>
@@ -55,99 +43,12 @@ export const SelectEmpresaPage = () => {
      <div className="container text-center">
         
       {
-        prueba ?
-        (
-          <div className="row mt-5">
-
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">Lucas</h5>
-                  <button onClick={() => selectEmpresa('lucas', 123)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">AppTeck</h5>
-                  <button onClick={() => selectEmpresa('appteck', 3)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">Darknet</h5>
-                  <button onClick={() => selectEmpresa('darknet', 333)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">Kings</h5>
-                  <button onClick={() => selectEmpresa('kings', 121)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">StevenKing</h5>
-                  <button onClick={() => selectEmpresa('StevenKing', 551)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">Sufjan</h5>
-                  <button onClick={() => selectEmpresa('Sufjan', 552)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
-              <div className="card card-styles" >
-                <div className="card-body">
-                  <h5 className="card-title title-empresa">KickBoxing</h5>
-                  <button onClick={() => selectEmpresa('KickBoxing', 844)} className="btn btn-primary mt-3 btn-ingresar">
-                    Ingresar
-                    <ShortcutIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-  
-          </div>
-        )
-        :
-        (
-          <div className="row mt-5">
+        statusGetEmpresas === 'error'
+        ? <span>{errorMessageGetEmpresas}</span>
+        : (
+          statusGetEmpresas === 'checking' // En caso de que aun siga buscando las empresas
+          ? (
+            <div className="row mt-5">
               <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn">
                 <div className="card card-styles" >
                   <div className="card-body">
@@ -210,15 +111,29 @@ export const SelectEmpresaPage = () => {
                   </div>
                 </div>
               </div>
-          </div>
-          
+            </div>
+          ):( // En caso de que salga todo bien y encuentre empresas
+            <div className="row mt-5">
+              {
+                dataEmpresas.map(e => (
+                  <div className="col-md-3 col-sm-6 mt-2 animate__animated animate__fadeIn" key={e.COD_EMPRESA}>
+                    <div className="card card-styles" >
+                      <div className="card-body">
+                        <h5 className="card-title title-empresa">{cortarNombreEmpresa(e.NOMBRE)}</h5>
+                        <button onClick={() => selectEmpresa(e.NOMBRE, e.COD_EMPRESA)} className="btn btn-primary mt-3 btn-ingresar">
+                          Ingresar
+                          <ShortcutIcon />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          )
         )
       }
-
-    
-
-    </div>
-     
+      </div>
     </>
   )
 }

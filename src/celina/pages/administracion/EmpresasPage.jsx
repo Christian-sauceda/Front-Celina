@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useEffect } from "react";
 
 
 //? DATA MOMENTANEA (LUEGO LA BORRARE)
@@ -11,11 +12,12 @@ import { dataEmpresas } from "../../../assets/dataEmpresas";
 import { EmpresasModal } from "./";
 
 // Custom Hooks
-import { useUiStoreEmpresas } from "../../../hooks";
+import { useEmpresasStore, useUiStoreEmpresas } from "../../../hooks";
 
 export const EmpresasPage = () => {
-  // const columns = ["Nombre", "RTN", "Sitio Web", "Email", "Telefono", "Celular", "Direccion", "Ciudad", "Estado", "Pais", "Editar", "Eliminar"];
   const {openEmpresasModal} = useUiStoreEmpresas() // Hook para Abrir Modal de Empresas
+  const {startTablaGetEmpresasPorCodUserLogeado} = useEmpresasStore() //* Para traer las empresas de ese usuario con un formato en espesifico
+  //! startTablaGetEmpresasPorCodUserLogeado Esta funcion devuelve un arreglo con un formato en espesifico de la lista de empresas que se cargaron cuando el usuario se logeo, asi envito hacerle de nuevo una peticion al servidor
 
   const columns = [
     {name: 'Nombre'},
@@ -48,7 +50,7 @@ export const EmpresasPage = () => {
     responsive: 'simple',
   };
 
-  return (
+  return ( //! Aqui no ocupo poner "spinner", cargas o ese tipo de cosas ya que la informacion se consulto desde que el usuario se logeo y esta en memoria
     <>
       <div className="container-fluid">
         <div className="d-flex justify-content-end">
@@ -65,7 +67,7 @@ export const EmpresasPage = () => {
         <MUIDataTable
           className='animate__animated animate__fadeIn'
           title={"Empresas"}
-          data={dataEmpresas}
+          data={startTablaGetEmpresasPorCodUserLogeado()}
           columns={columns}
           options={options} 
         />

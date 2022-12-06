@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { backCelinaApi } from "../../api";
 
-export const useUsuarios = () => {
+export const useUsuariosStore = () => {
     let dataUsers = []
     const [usuarios, setUsuarios] = useState([])
-    const {empresasPorUserLogged, empresaSeleccionada} = useSelector(state => state.selectEmpresa)
+    const {empresaSeleccionada} = useSelector(state => state.selectEmpresa)
 
     const startGetUsuarios = async () => {
         try {

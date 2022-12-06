@@ -7,12 +7,16 @@ import './stylesNavbar.css'
 import { useDispatch } from 'react-redux';
 
 // Custom Hooks
-import { useAuthStore } from '../../hooks';
+import { useAuthStore, useEmpresasStore, useTipoAsientosStore } from '../../hooks';
 
 export const NavbarInicioPage = () => {
   const {user, startLogout} = useAuthStore()
+  const {startClearGetEmpresaPorCodUserLogeado} = useEmpresasStore()
+  const {startClearGetTipoAsientos} = useTipoAsientosStore()
 
   const closeSession = () => {
+    startClearGetEmpresaPorCodUserLogeado() //* Limpiar del Store las empresas consultadas
+    startClearGetTipoAsientos() //* Limpiar del Store los Tipo de Asientos consultados
     startLogout(null)
   }
 

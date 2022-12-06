@@ -22,20 +22,29 @@ import { onLeaveEmpresa } from '../../store';
 
 // Custom Hooks
 import { useAuthStore } from '../../hooks/authHooks/useAuthStore';
+import { useEmpresasStore, useTipoAsientosStore } from '../../hooks';
+
+// Helpers
+import { cortarNombreEmpresa } from '../../helpers/cortarNombreEmpresa'; // Helper para evitar romper disenio con nombre de empresa muy largo (por si se llega a dar el caso)... Devolvera un string pero con "..." al final
 
 export const Sidebar = ( {children} ) => {
     const dispatch = useDispatch()
     const {user, startLogout} = useAuthStore()
+    const {startClearGetEmpresaPorCodUserLogeado} = useEmpresasStore()
+    const {startClearGetTipoAsientos} = useTipoAsientosStore()
 
-    const {empresaSeleccionada} = useSelector(state => state.selectEmpresa)
+    const {empresaSeleccionada} = useSelector(state => state.selectEmpresa) // TODO Meter esto en un hook
 
     const closeSession = () => {
-        dispatch(onLeaveEmpresa())
+        dispatch(onLeaveEmpresa()) // TODO Meter esto en un hook
+
+        startClearGetEmpresaPorCodUserLogeado()
+        startClearGetTipoAsientos()
         startLogout(null)
     }
 
     const leaveEmpresa = () => {
-        dispatch(onLeaveEmpresa())
+        dispatch(onLeaveEmpresa()) // TODO Meter esto en un hook
     }
 
   return (
@@ -46,7 +55,7 @@ export const Sidebar = ( {children} ) => {
 
                     <div id="sidebar-nav" className="list-group border-0 rounded-0 text-sm-start min-vh-100 sidebar_nav_styles">
                         
-                        <h3 className='text-center my-2'>{empresaSeleccionada.nombre.toUpperCase()}</h3>
+                        <h3 className='text-center my-2'>{cortarNombreEmpresa(empresaSeleccionada.nombre).toUpperCase()}</h3>
 
                         {/* Perfil Usuario */}
                         <div className="card card_styles">
