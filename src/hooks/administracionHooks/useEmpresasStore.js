@@ -16,7 +16,7 @@ export const useEmpresasStore = () => {
           dispatch(onGetEmpresas(data.data))
         }catch(error){ // En caso de que no encuentre ninguna empresa
           console.log(error)
-          onErrorGetEmpresas('No hay empresas registradas...')
+          dispatch(onErrorGetEmpresas('No hay empresas registradas...'))
         }
     }
 

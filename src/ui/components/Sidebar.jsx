@@ -22,7 +22,7 @@ import { onLeaveEmpresa } from '../../store';
 
 // Custom Hooks
 import { useAuthStore } from '../../hooks/authHooks/useAuthStore';
-import { useEmpresasStore, useTipoAsientosStore } from '../../hooks';
+import { useEmpresasStore, useTipoAsientosStore, useUsuariosStore } from '../../hooks';
 
 // Helpers
 import { cortarNombreEmpresa } from '../../helpers/cortarNombreEmpresa'; // Helper para evitar romper disenio con nombre de empresa muy largo (por si se llega a dar el caso)... Devolvera un string pero con "..." al final
@@ -32,14 +32,17 @@ export const Sidebar = ( {children} ) => {
     const {user, startLogout} = useAuthStore()
     const {startClearGetEmpresaPorCodUserLogeado} = useEmpresasStore()
     const {startClearGetTipoAsientos} = useTipoAsientosStore()
+    const {startClearGetUsuarios} = useUsuariosStore()
 
     const {empresaSeleccionada} = useSelector(state => state.selectEmpresa) // TODO Meter esto en un hook
 
     const closeSession = () => {
         dispatch(onLeaveEmpresa()) // TODO Meter esto en un hook
 
+        //* Limpiar los datos almacenados en el "store"
         startClearGetEmpresaPorCodUserLogeado()
         startClearGetTipoAsientos()
+        startClearGetUsuarios()
         startLogout(null)
     }
 

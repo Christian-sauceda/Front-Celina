@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import CloseIcon from '@mui/icons-material/Close';
 
 
 // Import Modal
@@ -81,9 +82,12 @@ export const GeneracionAsientosMayorizadosModal = () => {
       closeTimeoutMS={200}
     >
       {/* Header */}
-      <div className='d-flex align-items-middle justify-content-center py-4'>
-        <BookIcon fontSize='large' className='me-2' />
-        <h2>Asientos Mayorizados</h2>
+      <div className="d-flex justify-content-between">
+        <div className='d-flex align-items-middle justify-content-center py-4'>
+          <BookIcon fontSize='large' className='me-2' />
+          <h2>Asientos Mayorizados</h2>
+        </div>
+        <Button onClick={closeGeneracionAsientosMayorizadosModal}><CloseIcon /></Button>
       </div>
 
       <MUIDataTable

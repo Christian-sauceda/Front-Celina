@@ -1,3 +1,4 @@
 export * from './celinaSlice'
-export * from './administracion/getEmpresasSlice'
+export * from './administracion'
 export * from './selectEmpresaSlice'
+export * from './utilidades'

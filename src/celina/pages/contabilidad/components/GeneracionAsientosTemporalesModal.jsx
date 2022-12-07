@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Button } from "@mui/material";
-
+import CloseIcon from '@mui/icons-material/Close';
 
 // Import Modal
 import Modal from "react-modal"
@@ -89,9 +89,12 @@ export const GeneracionAsientosTemporalesModal = () => {
       closeTimeoutMS={200}
     >
       {/* Header */}
-      <div className='d-flex align-items-middle justify-content-center py-4'>
-        <FolderIcon fontSize='large' className='me-2' />
-        <h2>Asientos Temporales</h2>
+      <div className="d-flex justify-content-between">
+        <div className='d-flex align-items-middle justify-content-center py-4'>
+          <FolderIcon fontSize='large' className='me-2' />
+          <h2>Asientos Temporales</h2>
+        </div>
+        <Button onClick={closeGeneracionAsientosTemporalesModal}><CloseIcon /></Button>
       </div>
 
       <MUIDataTable

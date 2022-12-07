@@ -5,17 +5,17 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { CircularProgress } from '@mui/material';
+import { useEffect } from "react";
 
 // Components
 import { UsuariosModal } from "./";
 
 // Custom Hooks
 import { useUiStoreUsuarios, useUsuariosStore } from "../../../hooks";
-import { useEffect } from "react";
 
 export const UsuariosPage = () => {
   const {openUsuariosModal} = useUiStoreUsuarios() // Hook para Abrir Modal de Usuarios
-  const {usuarios, startGetUsuarios} = useUsuariosStore() // Hook para traer Usuarios de la DB
+  const {statusGetUsuarios, dataUsuarios, errorMessageGetUsuarios, startGetUsuarios} = useUsuariosStore() // Hook para traer Usuarios de la DB
 
   const columns = [
     {name: 'Nombre de Usuario'},
@@ -71,10 +71,10 @@ export const UsuariosPage = () => {
         </div>
 
         {
-          usuarios === null //* Enviar si de verdad hay usuarios
-          ? <span>No hay usuarios registrados...</span>
+          statusGetUsuarios === 'error' //* Enviar si de verdad hay usuarios
+          ? <span>{errorMessageGetUsuarios}</span>
           : (
-            usuarios.length < 1 
+            statusGetUsuarios === 'checking'
             ? (
               <>
                 <CircularProgress />
@@ -86,14 +86,12 @@ export const UsuariosPage = () => {
               <MUIDataTable
                 className='animate__animated animate__fadeIn'
                 title={"Usuarios"}
-                data={usuarios}
+                data={dataUsuarios}
                 columns={columns}
                 options={options} 
               />
           )
           )
-
-          
         }
         
       </div>
