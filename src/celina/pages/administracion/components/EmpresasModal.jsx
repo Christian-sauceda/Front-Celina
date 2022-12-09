@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ComputerIcon from '@mui/icons-material/Computer';
 import { Button, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
@@ -11,7 +11,7 @@ import Modal from "react-modal"
 import './stylesModalUsuarios.css'
 
 // Custom Hooks
-import { useUiStoreEmpresas } from "../../../../hooks";
+import { useEmpresasStore, useUiStoreEmpresas } from "../../../../hooks";
 
 // Input Phones
 import PhoneInput from 'react-phone-input-2'
@@ -33,12 +33,37 @@ Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de 
 
 export const EmpresasModal = () => {
     const {isEmpresasModalOpen, closeEmpresasModal} = useUiStoreEmpresas()
+    const {startGetEstadosPorPais} = useEmpresasStore()
+    const cellPhone = 'qwe' //TODO Borrar esta data
 
-    //TODO Luego tengo que quitar esto
-    const [cellPhone, setCellPhone] = useState()
-    const changePhone = (e) => {
-        setCellPhone(e)
+
+    const [formValue, setFormValue] = useState({
+      NOMBRE: '',
+      RTN: '',
+      WEB: '',
+      USEREMAIL: '',
+      SERVEREMAIL: '',
+      COD_CITY: 1,
+      ADDRESS_WORK: '',
+      NUM_AREAOFF: '',
+      NUM_AREACEL: '',
+      NUM_OFFPHONE: '',
+      NUM_CELPHONE: '',
+
+    })
+
+    const onInputChange = ({target}) => {
+      setFormValue({
+        ...formValue,
+        [target.name]: target.value
+      })
+      console.log('Form value >> ', formValue)
     }
+
+    useEffect(() => {
+      startGetEstadosPorPais()
+    }, [])
+    
 
   return (
 
@@ -66,8 +91,10 @@ export const EmpresasModal = () => {
                 type='text' 
                 placeholder='Ejemplo: Appteck' 
                 fullWidth
-                name='nombreEmpresa'
+                name='NOMBRE'
+                onChange={onInputChange}
                 variant='standard'
+                value={formValue.NOMBRE}
               />
           </Grid>
 
@@ -77,8 +104,10 @@ export const EmpresasModal = () => {
                 type='text' 
                 placeholder='Ejemplo: John Doe' 
                 fullWidth
-                name='firstName'
+                name='WEB'
                 variant='standard'
+                onChange={onInputChange}
+                value={formValue.WEB}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -91,8 +120,8 @@ export const EmpresasModal = () => {
                   className=' d-block w-100'
                   country={'hn'}
                   enableAreaCodes={true}
+                  // onChange={onInputChange}
                   value={cellPhone}
-                  onChange={changePhone}
               />
           </Grid>
 
@@ -102,6 +131,7 @@ export const EmpresasModal = () => {
               id="demo-simple-select"
               defaultValue={1}
               variant='standard'
+              onChange={onInputChange}
               // onChange={handleChange}
               fullWidth
             >
@@ -114,8 +144,9 @@ export const EmpresasModal = () => {
             <InputLabel>Ciudad</InputLabel>
             <Select
               id="demo-simple-select"
-              defaultValue={1}
               variant='standard'
+              onChange={onInputChange}
+              value={formValue.COD_CITY}
               // onChange={handleChange}
               fullWidth
             >
@@ -140,8 +171,10 @@ export const EmpresasModal = () => {
                 type='text' 
                 placeholder='Ejemplo: 1975462301234' 
                 fullWidth
-                name='rtn'
+                name='RTN'
                 variant='standard'
+                onChange={onInputChange}
+                value={formValue.RTN}
               />
           </Grid>
           
@@ -153,6 +186,7 @@ export const EmpresasModal = () => {
                 fullWidth
                 name='email'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -166,7 +200,7 @@ export const EmpresasModal = () => {
                   country={'hn'}
                   enableAreaCodes={true}
                   value={cellPhone}
-                  onChange={changePhone}
+                  // onChange={onInputChange}
               />
           </Grid>
           
@@ -177,6 +211,7 @@ export const EmpresasModal = () => {
               defaultValue={1}
               // onChange={handleChange}
               variant='standard'
+              onChange={onInputChange}
               fullWidth
               >
               <MenuItem value='1'>Francisco Morazan</MenuItem>
@@ -197,6 +232,7 @@ export const EmpresasModal = () => {
                 placeholder='Ejemplo: Col. Celina, Tegucigalpa, Francisco Morazan' 
                 fullWidth
                 name='direccion'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}

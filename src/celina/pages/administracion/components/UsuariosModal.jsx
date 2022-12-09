@@ -40,8 +40,9 @@ Modal.setAppElement('#root'); // Ese "root" es el "id=root" del "index.html" de 
 export const UsuariosModal = () => {
   const {isUsuariosModalOpen, closeUsuariosModal} = useUiStoreUsuarios()
   const [cellPhone, setCellPhone] = useState()
-  const changePhone = (e) => {
-    setCellPhone(e)
+
+  const onInputChange = ({target}) => {
+    console.log('Target >> ', target)
   }
 
   return (
@@ -71,6 +72,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='idpasaporte'
                 variant='standard'
+                onChange={onInputChange}
               />
           </Grid>
 
@@ -82,6 +84,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='password'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -96,6 +99,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='firstName'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -110,6 +114,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='firstName'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -121,6 +126,7 @@ export const UsuariosModal = () => {
             <Select
               id="demo-simple-select"
               defaultValue={'M'}
+              onChange={onInputChange}
               // onChange={handleChange}
               variant='standard'
               fullWidth
@@ -149,6 +155,7 @@ export const UsuariosModal = () => {
               id="demo-simple-select"
               defaultValue={2}
               variant='standard'
+              onChange={onInputChange}
               // onChange={handleChange}
               fullWidth
             >
@@ -163,6 +170,7 @@ export const UsuariosModal = () => {
               id="demo-simple-select"
               defaultValue={1}
               variant='standard'
+              onChange={onInputChange}
               // onChange={handleChange}
               fullWidth
             >
@@ -186,6 +194,7 @@ export const UsuariosModal = () => {
                 placeholder='Ejemplo: Col. Celina, Tegucigalpa, Francisco Morazan' 
                 fullWidth
                 name='direccion'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -209,7 +218,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='username'
                 variant='standard'
-
+                onChange={onInputChange}
               />
           </Grid>
 
@@ -221,6 +230,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='password'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -235,6 +245,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='lastName'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -249,6 +260,7 @@ export const UsuariosModal = () => {
                 fullWidth
                 name='email'
                 variant='standard'
+                onChange={onInputChange}
                 // onChange={}
                 // error={}              
                 // helperText={}
@@ -261,6 +273,7 @@ export const UsuariosModal = () => {
               id="demo-simple-select"
               defaultValue={'S'}
               variant='standard'
+              onChange={onInputChange}
               // onChange={handleChange}
               fullWidth
             >
@@ -278,7 +291,7 @@ export const UsuariosModal = () => {
                   country={'hn'}
                   enableAreaCodes={true}
                   value={cellPhone}
-                  onChange={changePhone}
+                  onChange={onInputChange}
               />
           </Grid>
 
@@ -289,6 +302,7 @@ export const UsuariosModal = () => {
               defaultValue={'HN'}
               // onChange={handleChange}
               variant='standard'
+              onChange={onInputChange}
               fullWidth
               >
               <MenuItem value='HN'>Honduras</MenuItem>
@@ -302,6 +316,7 @@ export const UsuariosModal = () => {
               id="demo-simple-select"
               defaultValue={1}
               variant='standard'
+              onChange={onInputChange}
               // onChange={handleChange}
               fullWidth
             >

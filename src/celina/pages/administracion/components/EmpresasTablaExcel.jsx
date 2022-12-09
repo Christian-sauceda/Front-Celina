@@ -1,5 +1,6 @@
 
 export const EmpresasTablaExcel = ({dataEmpresas}) => {
+
   return (
     <table className="table d-none" id="miTablita">
         <thead>
@@ -24,8 +25,8 @@ export const EmpresasTablaExcel = ({dataEmpresas}) => {
                 <td>{e.RTN}</td>
                 <td>{e.SERVEREMAIL}</td>
                 <td>{e.USEREMAIL}</td>
-                <td>{e.NUMEROS}</td>
-                <td></td>
+                <td>{e.NUMEROS.split('|')[1].split(':')[1]}</td>
+                <td>{e.NUMEROS.split('|')[0].split(':')[1]}</td>
                 <td>{e.ADDRESS}</td>
                 <td>{e.NAM_CITY}</td>
                 <td>{e.NAME_STATE}</td>

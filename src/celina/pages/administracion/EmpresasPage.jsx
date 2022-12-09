@@ -19,6 +19,9 @@ import { useEmpresasStore, useUiStoreEmpresas } from "../../../hooks";
 // Components
 import { EmpresasModal, EmpresasTablaExcel } from "./";
 
+// Styles
+import './components/stylesBtnExcelAndPdf.css'
+
 export const EmpresasPage = () => {
   const {openEmpresasModal} = useUiStoreEmpresas() // Hook para Abrir Modal de Empresas
   const {dataEmpresas, startTablaGetEmpresasPorCodUserLogeado} = useEmpresasStore() //* Para traer las empresas de ese usuario con un formato en espesifico
@@ -68,7 +71,8 @@ export const EmpresasPage = () => {
         rtn: e.RTN,
         website: e.WEB,
         email: e.SERVEREMAIL,
-        telefono: e.NUMEROS,
+        telefono: e.NUMEROS.split('|')[1].split(':')[1],
+        celular: e.NUMEROS.split('|')[0].split(':')[1],
         direccion: e.ADDRESS,
         ciudad: e.NAM_CITY,
         estado: e.NAME_STATE,
@@ -80,44 +84,44 @@ export const EmpresasPage = () => {
         {header: 'Sitio Web', dataKey: 'website'},
         {header: 'Email', dataKey: 'email'},
         {header: 'Telefono', dataKey: 'telefono'},
+        {header: 'Celular', dataKey: 'celular'},
         {header: 'Direccion', dataKey: 'direccion'},
         {header: 'Ciudad', dataKey: 'ciudad'},
         {header: 'Estado', dataKey: 'estado'},
         {header: 'Pais', dataKey: 'pais'},
       ]
     })
-    doc.save('tablaprueba.pdf')
+    doc.save('ReporteEmpresasAppteck.pdf')
   }
 
 
   return ( //! Aqui no ocupo poner "spinner", cargas o ese tipo de cosas ya que la informacion se consulto desde que el usuario se logeo y esta en memoria
     <>
       <div className="container-fluid">
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end align-items-center">
+
           {/* Botones para exportar PDF o Excel */}
           <div className="d-flex me-5">
             {/* <Button type="button" variant="text" className="d-flex justify-content-center py-0 mx-2"> */}
               <ReactHTMLTableToExcel 
                 id="btnExport"
-                className="btn btn-success"
+                className="btn styles_btn_excel"
                 table="miTablita"
-                filename="pruebaexcel"
-                sheet="paginas 1"
+                filename="ReporteEmpresasAppteck"
+                sheet="pagina1"
                 buttonText="Excel"
               />
             {/* </Button> */}
 
             <Button
               type="button"
-              className="mx-2"
+              className="mx-2 styles_btn_pdf"
               onClick={downloadPdf}
-              sx={{background: '#ff1744', color: 'white'}}
             >
               PDF
             </Button>
           </div>
           {/* FIN de Botones para exportar PDF o Excel */}
-
           <Button
             type="button"
             variant="contained"
